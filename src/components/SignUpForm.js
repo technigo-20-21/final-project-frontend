@@ -1,16 +1,20 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { createUserFetch } from '../reducers/userFetch'
 
 export const SignUpForm = () => {
   const [user, setUser] = useState({ name: "", email: "", password: "" });
-  console.log({ user });
+  const dispatch = useDispatch();
 
   const createUser = (user) => {
-    // Dispatch user till  reducer
     console.log("In createUser function!")
+    dispatch(createUserFetch(user))
   }
 
   const handleSubmit = (event) => {
     console.log("In handleSubmit function!")
+    console.log({user})
     event.preventDefault();
     createUser(user);
     setUser({ name: "", email: "", password: "" });

@@ -2,11 +2,11 @@ import React from "react";
 import { Provider } from "react-redux";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import { users } from "reducers/users";
-import { SignUpForm } from "components/SignUpForm";
+import { users } from "./reducers/users";
+import { SignUpForm } from "./components/SignUpForm";
 
 const reducer = combineReducers({
-  //user: user.reducer,
+  users: users.reducer,
 });
 
 const store = configureStore({ reducer });
