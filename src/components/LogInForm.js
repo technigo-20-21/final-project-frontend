@@ -3,35 +3,27 @@ import { useDispatch } from "react-redux";
 
 import { manageUserFetch } from '../reducers/userFetch'
 
-export const SignUpForm = () => {
-  const [user, setUser] = useState({ name: "", email: "", password: "" });
+export const LogInForm = () => {
+  const [user, setUser] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
-  const endpoint = "users"
+  const endpoint = "sessions"
 
-  const createUser = (user) => {
-    console.log("In createUser function!")
+  const logInUser = (user) => {
+    console.log("In logInUser function!")
+    console.log({endpoint})
     dispatch(manageUserFetch(user, endpoint))
   }
 
   const handleSubmit = (event) => {
-    console.log("In signup handleSubmit function!")
+    console.log("In login handleSubmit function!")
     console.log({user})
     event.preventDefault();
-    createUser(user);
-    setUser({ name: "", email: "", password: "" });
+    logInUser(user);
+    setUser({ email: "", password: "" });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        <input
-          type="text"
-          required
-          placeholder="Name"
-          value={user.name}
-          onChange={(event) => setUser({ ...user, name: event.target.value })}
-        ></input>
-      </label>
       <label>
         <input
           type="email"
@@ -52,7 +44,7 @@ export const SignUpForm = () => {
           }
         ></input>
       </label>
-      <button type="submit">Create user</button>
+      <button type="submit">Log in</button>
     </form>
   );
 };

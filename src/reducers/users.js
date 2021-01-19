@@ -6,6 +6,7 @@ const initialState = {
     name: "",
   },
   isLoggedIn: false,
+  errorMessage: "",
 };
 
 export const users = createSlice({
@@ -21,6 +22,9 @@ export const users = createSlice({
       state.user.accessToken = "";
       state.user.name = "";
       state.isLoggedIn = false;
+    },
+    setErrorMessage: (state, action) => {
+      state.setErrorMessage = action.payload;
     },
   },
 });
