@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { manageUserFetch } from "../reducers/userFetch";
 
-export const LogInForm = () => {
+export const LogIn = () => {
   const [user, setUser] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
   const endpoint = "sessions";

@@ -40,7 +40,6 @@ const ImageContainer = styled.a`
   text-decoration: none;
   color: black;
   width: 33%;
-  positiion: absolute;
   text-align: center;
 
   @media (min-width: 950px) {
@@ -51,7 +50,7 @@ const ImageContainer = styled.a`
 
 const Image = styled.img`
   width: 100%;
-  position: relative;
+
   top: 0;
 `;
 
@@ -62,6 +61,4 @@ const ImageContent = styled.div`
   font-weight: 700;
   display: flex;
   flex-direction: column;
-  position: relative;
-  top: 0px;
 `;

@@ -1,10 +1,21 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 
 export const Header = () => {
+  const isLoggedIn = useSelector((store) => store.users.isLoggedIn);
+
   return (
     <>
-      <TopRow />
+      <TopRow>
+        {!isLoggedIn && (
+          <Link to="/SignUp">
+            <LogInButton>Logga in</LogInButton>
+          </Link>
+        )}
+        {isLoggedIn && <UserIcon src="../img/user-icon.png"></UserIcon>}
+      </TopRow>
       <MainRow>
         <Title>Torslanda locals</Title>
         <SubTitle>Restauranger, service och affärer nära dig</SubTitle>
@@ -23,8 +34,33 @@ export const Header = () => {
 };
 
 const TopRow = styled.section`
-  height: 35px;
   background: lightgray;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+const LogInButton = styled.button`
+  cursor: pointer;
+  background: none;
+  border: 1px solid;
+  padding: 5px 15px 7px 15px;
+  border-radius: 20px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #29354b;
+  outline: none;
+
+  &:hover {
+    background: #29354b;
+    color: white;
+  }
+`;
+
+const UserIcon = styled.img`
+  height: 30px;
+  width: 30px;
 `;
 
 const MainRow = styled.section`
@@ -59,10 +95,13 @@ const Nav = styled.div`
 `;
 
 const NavLink = styled.a`
+  padding: 5px 10px;
   text-decoration: none;
   color: #29354b;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+
   &:hover {
-    font-weight: 700;
-    color: #4b2935;
+    border-image: linear-gradient(to right, transparent, #999, transparent) 5;
   }
 `;

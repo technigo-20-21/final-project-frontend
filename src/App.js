@@ -7,6 +7,7 @@ import { users } from "./reducers/users";
 import { Main } from "./components/Main";
 import { Header } from "./components/Header"
 import { LandingPage } from "./pages/LandingPage"
+import { SignUp } from "./pages/SignUp"
 import { UserDetails } from "./pages/UserDetails"
 import { NotFound } from "./pages/NotFound"
 import { Footer } from "./components/Footer"
@@ -26,6 +27,9 @@ export const App = () => {
           <Switch>
             <Route path="/" exact>
               <LandingPage />
+            </Route>
+            <Route path="/signup" exact>
+              <SignUp />
             </Route>
             <Route path="/users/:id" exact>
               <UserDetails />
