@@ -5,7 +5,7 @@ import styled from "styled-components/macro";
 import { manageUserFetch } from "../reducers/userFetch";
 
 export const SignUp = () => {
-  const [user, setUser] = useState({ name: "", email: "", password: "" });
+  const [user, setUser] = useState({ firstname: "", lastname: "", email: "", password: "" });
   const dispatch = useDispatch();
   const endpoint = "users";
 
@@ -19,7 +19,7 @@ export const SignUp = () => {
     console.log({ user });
     event.preventDefault();
     createUser(user);
-    setUser({ name: "", email: "", password: "" });
+    setUser({ firstname: "", lastname: "", email: "", password: "" });
   };
 
   return (
@@ -28,9 +28,18 @@ export const SignUp = () => {
         <UserInput
           type="text"
           required
-          placeholder="Namn"
-          value={user.name}
-          onChange={(event) => setUser({ ...user, name: event.target.value })}
+          placeholder="Förnamn"
+          value={user.firstname}
+          onChange={(event) => setUser({ ...user, firstname: event.target.value })}
+        ></UserInput>
+      </label>
+      <label>
+        <UserInput
+          type="text"
+          required
+          placeholder="Efternamn"
+          value={user.lastname}
+          onChange={(event) => setUser({ ...user, lastname: event.target.value })}
         ></UserInput>
       </label>
       <label>
@@ -67,7 +76,7 @@ const SignUpForm = styled.form`
 
 const UserInput = styled.input`
   margin: 5px;
-  padding: 5px;
+  padding: 10px;
   width: 250px;
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
@@ -77,8 +86,8 @@ const UserInput = styled.input`
 const Button = styled.button`
   margin: 10px;
   background: #29354b;
-  padding: 5px 15px 7px 15px;
-  border-radius: 20px;
+  padding: 10px 20px 13px 20px;
+  border-radius: 25px;
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   color: #fff;

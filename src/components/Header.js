@@ -10,7 +10,7 @@ export const Header = () => {
     <>
       <TopRow>
         {!isLoggedIn && (
-          <Link to="/SignUp">
+          <Link to="/LogIn">
             <LogInButton>Logga in</LogInButton>
           </Link>
         )}
@@ -56,6 +56,12 @@ const LogInButton = styled.button`
     background: #29354b;
     color: white;
   }
+`;
+
+const FoldOutLogin = styled.div`
+  height: 50px;
+  width: 50px;
+  background: green;
 `;
 
 const UserIcon = styled.img`

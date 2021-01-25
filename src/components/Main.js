@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import { SignUp } from "../pages/SignUp";
-import { LogIn } from "./LogIn";
+import { LogIn } from "../pages/LogIn";
 import { UserInformation } from "./UserInformation";
 import { LogOutButton } from "./LogOutButton";
 

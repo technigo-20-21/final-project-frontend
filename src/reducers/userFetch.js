@@ -11,7 +11,8 @@ export const manageUserFetch = (user, endpoint) => {
       method: "POST",
       headers: { "Content-Type": "application/JSON" },
       body: JSON.stringify({
-        name: user.name,
+        firstname: user.firstname,
+        lastname: user.lastname,
         email: user.email,
         password: user.password,
       }),
@@ -27,7 +28,7 @@ export const manageUserFetch = (user, endpoint) => {
           dispatch(users.actions.logIn(json));
         } else {
           console.log("User created!");
-          alert(`User ${user.name} was created.`);
+          alert(`User ${user.firstname} ${user.lastname} was created.`);
         }
       });
   };
