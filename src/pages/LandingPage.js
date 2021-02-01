@@ -50,7 +50,6 @@ const ImageContainer = styled.a`
 
 const Image = styled.img`
   width: 100%;
-
   top: 0;
 `;
 
@@ -62,3 +61,4 @@ const ImageContent = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
