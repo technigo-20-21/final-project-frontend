@@ -2,24 +2,17 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components/macro";
 
-import { manageUserFetch } from "../reducers/userFetch";
+import { signUpFetch } from "../reducers/userFetch";
 
 export const SignUp = () => {
-  const [user, setUser] = useState({ firstname: "", lastname: "", email: "", password: "" });
+  const [user, setUser] = useState({ firstName: "", lastName: "", email: "", password: "" });
   const dispatch = useDispatch();
   const endpoint = "users";
 
-  const createUser = (user) => {
-    console.log("In createUser function!");
-    dispatch(manageUserFetch(user, endpoint));
-  };
-
   const handleSubmit = (event) => {
-    console.log("In signup handleSubmit function!");
-    console.log({ user });
     event.preventDefault();
-    createUser(user);
-    setUser({ firstname: "", lastname: "", email: "", password: "" });
+    dispatch(signUpFetch(user));
+    setUser({ firstName: "", lastName: "", email: "", password: "" });
   };
 
   return (
@@ -29,8 +22,8 @@ export const SignUp = () => {
           type="text"
           required
           placeholder="Förnamn"
-          value={user.firstname}
-          onChange={(event) => setUser({ ...user, firstname: event.target.value })}
+          value={user.firstName}
+          onChange={(event) => setUser({ ...user, firstName: event.target.value })}
         ></UserInput>
       </label>
       <label>
@@ -38,8 +31,8 @@ export const SignUp = () => {
           type="text"
           required
           placeholder="Efternamn"
-          value={user.lastname}
-          onChange={(event) => setUser({ ...user, lastname: event.target.value })}
+          value={user.lastName}
+          onChange={(event) => setUser({ ...user, lastName: event.target.value })}
         ></UserInput>
       </label>
       <label>

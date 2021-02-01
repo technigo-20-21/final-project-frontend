@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: {
-    accessToken: "",
-    firstname: "",
-    lastname: "",
+    accessToken: localStorage.accessToken || null,
+    userId: 0,
+    firstName: "",
+    lastName: "",
   },
-  isLoggedIn: false,
-  errorMessage: "",
+  statusMessage: "",
 };
 
 export const users = createSlice({
@@ -15,19 +15,21 @@ export const users = createSlice({
   initialState,
   reducers: {
     logIn: (state, action) => {
-      state.user.accessToken = action.payload.accessToken;
-      state.user.firstname = action.payload.firstname;
-      state.user.lastname = action.payload.lastname;
-      state.isLoggedIn = true;
+      const { accessToken, userId, firstName, lastName } = action.payload;
+      state.user.accessToken = accessToken;
+      localStorage.setItem('accessToken', accessToken)
+      state.user.userId = userId;
+      state.user.firstName = firstName;
+      state.user.lastName = lastName;
     },
     logOut: (state, action) => {
-      state.user.accessToken = "";
-      state.user.firstname = "";
-      state.user.lastname = "";
+      state.user.accessToken = null;
+      state.user.firstName = "";
+      state.user.lastName = "";
       state.isLoggedIn = false;
     },
-    setErrorMessage: (state, action) => {
-      state.setErrorMessage = action.payload;
+    setStatusMessage: (state, action) => {
+      state.statusMessage = action.payload.statusMessage;
     },
   },
 });
