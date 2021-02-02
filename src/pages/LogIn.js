@@ -3,24 +3,17 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 
-import { manageUserFetch } from "../reducers/userFetch";
+import { logInFetch } from "../reducers/userFetch";
 
 export const LogIn = () => {
   const [user, setUser] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
   const endpoint = "sessions";
 
-  const logInUser = (user) => {
-    console.log("In logInUser function!");
-    console.log({ endpoint });
-    dispatch(manageUserFetch(user, endpoint));
-  };
 
   const handleSubmit = (event) => {
-    console.log("In login handleSubmit function!");
-    console.log({ user });
     event.preventDefault();
-    logInUser(user);
+    dispatch(logInFetch(user));
     setUser({ email: "", password: "" });
   };
 

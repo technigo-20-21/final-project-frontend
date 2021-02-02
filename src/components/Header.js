@@ -4,17 +4,21 @@ import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 
 export const Header = () => {
-  const isLoggedIn = useSelector((store) => store.users.isLoggedIn);
+  const accessToken = useSelector((store) => store.users.user.accessToken);
 
   return (
     <>
       <TopRow>
-        {!isLoggedIn && (
+        {!accessToken && (
           <Link to="/LogIn">
             <LogInButton>Logga in</LogInButton>
           </Link>
         )}
-        {isLoggedIn && <UserIcon src="../img/user-icon.png"></UserIcon>}
+        {accessToken && (
+          <Link to="/userdetails">
+            <UserIcon src="../img/user-icon.png"></UserIcon>
+          </Link>
+        )}
       </TopRow>
       <MainRow>
         <Title>Torslanda locals</Title>
