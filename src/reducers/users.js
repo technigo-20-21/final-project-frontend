@@ -17,7 +17,7 @@ export const users = createSlice({
     logIn: (state, action) => {
       const { accessToken, userId, firstName, lastName } = action.payload;
       state.user.accessToken = accessToken;
-      localStorage.setItem('accessToken', accessToken)
+      localStorage.setItem("accessToken", accessToken);
       state.user.userId = userId;
       state.user.firstName = firstName;
       state.user.lastName = lastName;
@@ -26,7 +26,7 @@ export const users = createSlice({
       state.user.accessToken = null;
       state.user.firstName = "";
       state.user.lastName = "";
-      state.isLoggedIn = false;
+      localStorage.removeItem("accessToken");
     },
     setStatusMessage: (state, action) => {
       state.statusMessage = action.payload.statusMessage;

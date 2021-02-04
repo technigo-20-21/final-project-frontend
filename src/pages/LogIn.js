@@ -1,20 +1,24 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory, Link } from "react-router-dom";
 import styled from "styled-components/macro";
 
 import { logInFetch } from "../reducers/userFetch";
 
 export const LogIn = () => {
+  const accessToken = useSelector((store) => store.users.user.accessToken)
   const [user, setUser] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
-  const endpoint = "sessions";
+  const history = useHistory();
 
+  if (accessToken) {
+    history.push("/");
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(logInFetch(user));
-    setUser({ email: "", password: "" });
+    setUser({ email: "", password: "" });  
   };
 
   return (

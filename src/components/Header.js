@@ -58,7 +58,7 @@ const LogInButton = styled.button`
 
   &:hover {
     background: #29354b;
-    color: white;
+    color: #fff;
   }
 `;
 
