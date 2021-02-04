@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialUserState = {
+const initialState = {
   user: {
     accessToken: localStorage.accessToken || null,
     userId: 0,
@@ -12,7 +12,7 @@ const initialUserState = {
 
 export const users = createSlice({
   name: "users",
-  initialUserState,
+  initialState,
   reducers: {
     logIn: (state, action) => {
       const { accessToken, userId, firstName, lastName } = action.payload;

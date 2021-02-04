@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components/macro";
+import { useSelector, useDispatch } from "react-redux";
+
+import { categoriesFetch } from "../reducers/categoriesFetch"
 
 export const LandingPage = () => {
+  const dispatch = useDispatch();
+
+  const categories = useSelector(state => state.categories)
+  const categoriesStatus = useSelector(state => state.categories.status)
+  console.log (categories) 
+
+  useEffect(() => {
+    if (categoriesStatus === 'idle') {
+      dispatch(categoriesFetch())
+      console.log(categories)
+    }
+  }, [categoriesStatus, dispatch]);
+
   return (
     <Container>
       <ImageContainer href="#">
@@ -28,7 +44,7 @@ export const LandingPage = () => {
     </Container>
   );
 };
-
+ 
 const Container = styled.section`
   height: 100vh;
   width: 100%;
