@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { CATEGORIES_URL } from "../urls";
-import { LocalCategoryThumb } from "../components/LocalCategoryThumb";
+import { LocalCategoryThumb } from "../components/CategoryThumb";
 import { Container, ImageContainer, Image, ImageContent } from "../library/LandingPageStyles";
 
 export const LandingPage = () => {
@@ -39,5 +39,14 @@ export const LandingPage = () => {
   );
 };
  
+const categories = useSelector(state => state.categories)
+const categoriesStatus = useSelector(state => state.categories.status)
+console.log (categories) 
 
+useEffect(() => {
+  if (categoriesStatus === 'idle') {
+    dispatch(categoriesFetch())
+    console.log(categories)
+  }
+}, [categoriesStatus, dispatch]);
 

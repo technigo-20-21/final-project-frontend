@@ -1,34 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
-  height: 100vh;
-  width: 100%;
+  height: 100%;
+  width: 100vw;
+  margin: 10px;
   display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 10px;
 `;
 
-// Change color to white, media query doesn't work
-export const ImageContainer = styled.a`
-  text-decoration: none;
-  color: black;
-  width: 33%;
-  text-align: center;
-
-  @media (min-width: 950px) {
-    width: 100%;
-    flex-wrap: wrap;
-  }
-`;
-
-export const Image = styled.img`
-  width: 100%;
-  top: 0;
-`;
-
-// Move up
-export const ImageContent = styled.div`
-  text-transform: uppercase;
-  font-size: 48px;
-  font-weight: 700;
-  display: flex;
-  flex-direction: column;
-`;
