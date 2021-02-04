@@ -39,5 +39,14 @@ export const LandingPage = () => {
   );
 };
  
+const categories = useSelector(state => state.categories)
+const categoriesStatus = useSelector(state => state.categories.status)
+console.log (categories) 
 
+useEffect(() => {
+  if (categoriesStatus === 'idle') {
+    dispatch(categoriesFetch())
+    console.log(categories)
+  }
+}, [categoriesStatus, dispatch]);
 

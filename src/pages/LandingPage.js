@@ -1,80 +1,43 @@
-import React, { useEffect } from "react";
-import styled from "styled-components/macro";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { categoriesFetch } from "../reducers/categoriesFetch"
+import { CATEGORIES_URL } from "../urls"
+import { LocalCategoryThumb } from "../components/LocalCategoryThumb"
+import { Container, ImageContainer, Image, ImageContent } from "../library/LandingPageStyles"
 
 export const LandingPage = () => {
-  const dispatch = useDispatch();
+  const [categories, setCategories] = useState();
+  const [fetchStatus, setFetchStatus] = useState({});
 
-  const categories = useSelector(state => state.categories)
-  const categoriesStatus = useSelector(state => state.categories.status)
-  console.log (categories) 
 
+  const fetchCategoriesContent = () => {
+    fetch(CATEGORIES_URL)
+      .then(res => {
+        if (!res.ok) {
+          throw "No locals to display";
+        }
+      return res.json();
+      })
+      .then(json => {
+        console.log(json);
+        setCategories(json);
+        setFetchStatus({ status: "fulfilled" });
+      })
+      .catch(err => setFetchStatus(err))
+  }
+  
   useEffect(() => {
-    if (categoriesStatus === 'idle') {
-      dispatch(categoriesFetch())
-      console.log(categories)
-    }
-  }, [categoriesStatus, dispatch]);
+    fetchCategoriesContent();
+  }, []);
+
+  console.log(categories)
 
   return (
     <Container>
-      <ImageContainer href="#">
-        <Image src="../img/dinner.jpg" />
-        <ImageContent>
-          <p>Äta ute</p>
-          <span className="fas fa-chevron-circle-left"></span>
-        </ImageContent>
-      </ImageContainer>
-      <ImageContainer>
-        <Image src="../img/bag.jpg" />
-        <ImageContent>
-          <p>Shopping</p>
-          <span className="fas fa-chevron-circle-left"></span>
-        </ImageContent>
-      </ImageContainer>
-      <ImageContainer>
-        <Image src="../img/hair.jpg" />
-        <ImageContent>
-          <p>Hälsa &amp; skönhet</p>
-          <span className="fas fa-chevron-circle-left"></span>
-        </ImageContent>
-      </ImageContainer>
+      {categories && categories.map(cat => {
+        return <LocalCategoryThumb key={cat._id} cat={cat}/>
+      })} 
     </Container>
   );
 };
  
-const Container = styled.section`
-  height: 100vh;
-  width: 100%;
-  display: flex;
-`;
-
-// Change color to white, media query doesn't work
-const ImageContainer = styled.a`
-  text-decoration: none;
-  color: black;
-  width: 33%;
-  text-align: center;
-
-  @media (min-width: 950px) {
-    width: 100%;
-    flex-wrap: wrap;
-  }
-`;
-
-const Image = styled.img`
-  width: 100%;
-  top: 0;
-`;
-
-// Move up
-const ImageContent = styled.div`
-  text-transform: uppercase;
-  font-size: 48px;
-  font-weight: 700;
-  display: flex;
-  flex-direction: column;
-`;
-
