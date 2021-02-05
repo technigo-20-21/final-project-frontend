@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { CATEGORIES_URL } from "../urls"
 import { CategoryThumb } from "../components/CategoryThumb"
-import { Container } from "../library/LandingPageStyles"
+import { Container, CategoriesContainer } from "../library/LandingPageStyles"
 
 export const LandingPage = () => {
   const [categories, setCategories] = useState();
@@ -32,9 +32,11 @@ export const LandingPage = () => {
 
   return (
     <Container>
+      <CategoriesContainer>
       {categories && categories.map(category => (
         <CategoryThumb key={category._id} {...category}/>
       ))} 
+      </CategoriesContainer>
     </Container>
   );
 };

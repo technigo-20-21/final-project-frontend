@@ -16,15 +16,17 @@ export const Footer = () => {
 };
 
 const FooterContainer = styled.footer`
-  width: 100%;
   height: 25%;
   padding: 20px;
+  position: relative;
   background: #697181;
   color: white;
   text-align: center;
 `;
 
+
 const Editor = styled.p`
+  width: 100%;
   font-family: "Poiret One", cursive;
   font-size: 24px;
 `;
