@@ -3,7 +3,9 @@ import styled from "styled-components/macro";
 // Change color to white, media query doesn't work
 
 
-export const ImageContainer = styled.a`
+
+export const ImageLink = styled.a`
+  width: 100%;
   text-decoration: none;
   color: black;
   text-align: center;
