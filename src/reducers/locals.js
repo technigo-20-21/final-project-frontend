@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     locals: [],
-    errorMessage: "",
-    loading: false,
+    status: 'idle',
+    error: null,
 };
 
 export const locals = createSlice({
@@ -11,7 +11,7 @@ export const locals = createSlice({
     initialState,
     reducers: {
         getLocals: (state, action) => {
-            state.loading = true;
+            state.locals.push(action.payload)
         },
         displayLocals: (state, action) => {
             state.locals = action.payload;
@@ -20,7 +20,20 @@ export const locals = createSlice({
         errorMessageLocals: (state, action) => {
             state.error = action.payload;
             state.loading = false;
-        }
+        },
+        extraReducers: {
+            [localsListFetch.pending]: (state, action) => {
+                state.status = 'loading'
+            },
+            [localsListFetch.fulfilled]: (state, action) => {
+                state.status = 'succeeded';
+                console.log(action.payload)
+                state.categories.push(action.payload)
+            },
+            [localsListFetch.rejected]: (state, action) => {
+                state.status = 'failed';
+                state.errorMessage = action.error.message
+            }
 
     }
 })

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   ImageLink,
   ImageContent,
@@ -13,7 +14,9 @@ export const CategoryThumb = ({ display_name, img_url }) => {
       <ImageLink href="#">
         <ImageContent url={img_url}>
           <CategoryText>{display_name}</CategoryText>
-          <CategoryIcon className="fas fa-chevron-circle-left"></CategoryIcon>
+          <Link to={`/locals/${category}`}>
+            <CategoryIcon className="fas fa-chevron-circle-left"></CategoryIcon>
+          </Link>
         </ImageContent>
       </ImageLink>
   );

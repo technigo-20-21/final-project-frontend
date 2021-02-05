@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { CATEGORIES_URL } from "../urls";
+import { LOCALS_URL } from "../urls";
 import { LocalCategoryThumb } from "../components/CategoryThumb";
 import { Container, ImageContainer, Image, ImageContent } from "../library/LandingPageStyles";
 
 export const LandingPage = () => {
-  const [categories, setCategories] = useState({});
+  const [locals, setLocals] = useState({});
   const [fetchStatus, setFetchStatus] = useState({});
 
-  const fetchCategoriesContent = () => {
-    fetch(CATEGORIES_URL)
+  const fetchLocalsList = () => {
+    fetch(LOCALS_URL)
       .then(res => {
         if (!res.ok) {
           throw "No locals to display";
