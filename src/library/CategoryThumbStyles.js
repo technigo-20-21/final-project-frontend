@@ -14,19 +14,14 @@ export const ImageContainer = styled.a`
 //     flex-wrap: wrap;
 //   }
 `;
-export const Image = styled.img`
-  width: 100%;
-`;
 
 // Move up
 export const ImageContent = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  height: 300px;
+  background-image: url("${props => props.url}");
+  background-size: cover;
+  background-repeat: no-repeat;
   background-color: rgba(0,0,0,.7);
-  z-index: 10;
   color: #fff;
   font-size: 36px;
   display: flex;
