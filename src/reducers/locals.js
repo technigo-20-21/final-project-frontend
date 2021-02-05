@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialLocalsState = {
+const initialState = {
     locals: [],
     errorMessage: "",
     loading: false,
@@ -8,10 +8,9 @@ const initialLocalsState = {
 
 export const locals = createSlice({
     name: "locals",
-    initialLocalsState,
+    initialState,
     reducers: {
         getLocals: (state, action) => {
-            initialLocalsState;
             state.loading = true;
         },
         displayLocals: (state, action) => {

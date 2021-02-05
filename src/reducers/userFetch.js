@@ -4,7 +4,7 @@ import { MESSAGE_URL } from ".././urls";
 const SIGNUP_URL = "http://localhost:8080/users";
 const LOGIN_URL = "http://localhost:8080/sessions";
 
-export const signUpFetch = (user) => {
+export const signUpFetch = user => {
   return (dispatch) => {
     const handleSignUpSuccess = () => {
       console.log(`User ${user.firstName} ${user.lastName} was created.`);
