@@ -21,26 +21,6 @@ const reducer = combineReducers({
 
 const store = configureStore({ reducer });
 
-/*
-// Retrieve the localstorage and use it as our initial state
-const persistedStateJSON = localStorage.getItem("reduxState")
-console.log({persistedStateJSON})
-let persistedState = {} //preloadedState
-
-if (persistedStateJSON) {
-  persistedState = JSON.parse(persistedStateJSON)
-}
-console.log({persistedState})
-
-// Create the store using the initial state
-export const store = configureStore({reducer, persistedState})
-
-// Store the state in localstorage on any redux state change
-store.subscribe(() => {
-  localStorage.setItem('reduxState', JSON.stringify(store.getState()))
-})
-*/
-
 export const App = () => {
   return (
     <Provider store={store}>
