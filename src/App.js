@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import { users } from "./reducers/users";
-import { categories } from "./reducers/categories";
 import { locals } from "./reducers/locals";
 import { Main } from "./components/Main";
 import { Header } from "./components/Header"
@@ -18,11 +17,13 @@ import { Footer } from "./components/Footer"
 
 const reducer = combineReducers({
   users: users.reducer,
-  categories: categories.reducer,
   locals: locals.reducer
 });
 
-const store = configureStore({ reducer });
+const store = configureStore({ 
+  reducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+ });
 
 /*
 // Retrieve the localstorage and use it as our initial state
