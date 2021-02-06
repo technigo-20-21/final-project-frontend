@@ -11,22 +11,14 @@ export const locals = createSlice({
     initialState,
     reducers: {
         getLocals: (state, action) => {
-            const newLocal = action.payload;
-            const existingLocal = state.locals.find(local => local._id === newLocal._id)
-            if (!existingLocal) {
-                state.locals.push(action.payload);
+            state.locals = action.payload;
+    
+            // const existingLocal = state.locals.find(local => local._id === newLocal._id)
+            // if (!existingLocal) {
+            //     state.locals.push(action.payload);
                 
-            }
-            console.log(newLocal);
-            // const newLocalsList = [...state.locals, newLocal];
-            // state.locals = newLocalsList;
+            // }
             state.status = 'succeeded';
-                        // const newCategory = action.payload;
-            // console.log (newCategory)
-            // const newCategoryList = [...state.categories, newCategory];
-            // console.log (newCategoryList)
-            // state.categories = newCategoryList;
-            // console.log (state.categories)
         },
         updateLocals: (state, action) => {
 
@@ -42,8 +34,8 @@ export const locals = createSlice({
             },
             [fetchLocalsList.fulfilled]: (state, action) => {
                 state.status = 'succeeded';
-                console.log(action.payload)
-                state.locals.push(action.payload)
+                // console.log(action.payload)
+                // state.locals.push(action.payload)
             },
             [fetchLocalsList.rejected]: (state, action) => {
                 state.status = 'failed';

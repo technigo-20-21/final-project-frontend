@@ -11,6 +11,7 @@ import {
 } from "../library/LandingPageStyles";
 import { fetchLocalsList } from "../reducers/localsFetch";
 import { locals } from "../reducers/locals";
+
 export const LocalsListPage = () => {
   const dispatch = useDispatch();
 
@@ -36,11 +37,11 @@ export const LocalsListPage = () => {
     //  console.log(locals)
   };
 
-  // useEffect(() => {
+  useEffect(() => {
     dispatch(fetchLocalsList(category))
       .then((result) => handleFetchSuccess(result))
       .catch((error) => console.log(error));
-  // }, [dispatch, category]);
+  }, [dispatch, category]);
 
   return (
     <Container>
