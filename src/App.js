@@ -54,7 +54,7 @@ export const App = () => {
             <Route path="/" exact>
               <LandingPage />
             </Route>
-            <Route path="/:category">
+            <Route path="/locals/:category">
               <LocalsListPage />
             </Route>
             <Route path="/login" exact>

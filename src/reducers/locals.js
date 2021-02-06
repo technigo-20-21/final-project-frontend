@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import { fetchLocalsList } from './localsFetch';
 const initialState = {
     locals: [],
     status: 'idle',
@@ -22,18 +22,18 @@ export const locals = createSlice({
             state.loading = false;
         },
         extraReducers: {
-            [localsListFetch.pending]: (state, action) => {
+            [fetchLocalsList.pending]: (state, action) => {
                 state.status = 'loading'
             },
-            [localsListFetch.fulfilled]: (state, action) => {
+            [fetchLocalsList.fulfilled]: (state, action) => {
                 state.status = 'succeeded';
                 console.log(action.payload)
                 state.categories.push(action.payload)
             },
-            [localsListFetch.rejected]: (state, action) => {
+            [fetchLocalsList.rejected]: (state, action) => {
                 state.status = 'failed';
                 state.errorMessage = action.error.message
             }
-
+        }
     }
 })
