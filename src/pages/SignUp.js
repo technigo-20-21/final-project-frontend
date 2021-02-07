@@ -1,13 +1,20 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
 
+import { users } from "../reducers/users";
 import { signUpFetch } from "../reducers/userFetch";
 
 export const SignUp = () => {
-  const [user, setUser] = useState({ firstName: "", lastName: "", email: "", password: "" });
   const dispatch = useDispatch();
-  const endpoint = "users";
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+  const [accountCreated, setAccountCreated] = useState(false);
+  const statusMessage = useSelector((store) => store.users.statusMessage);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,48 +22,66 @@ export const SignUp = () => {
     setUser({ firstName: "", lastName: "", email: "", password: "" });
   };
 
+  if (statusMessage === "User account created") {
+    setAccountCreated(true);
+    dispatch(users.actions.setStatusMessage({ statusMessage: "" }));
+  }
+
   return (
-    <SignUpForm onSubmit={handleSubmit}>
-      <label>
-        <UserInput
-          type="text"
-          required
-          placeholder="Förnamn"
-          value={user.firstName}
-          onChange={(event) => setUser({ ...user, firstName: event.target.value })}
-        ></UserInput>
-      </label>
-      <label>
-        <UserInput
-          type="text"
-          required
-          placeholder="Efternamn"
-          value={user.lastName}
-          onChange={(event) => setUser({ ...user, lastName: event.target.value })}
-        ></UserInput>
-      </label>
-      <label>
-        <UserInput
-          type="email"
-          required
-          placeholder="E-post"
-          value={user.email}
-          onChange={(event) => setUser({ ...user, email: event.target.value })}
-        ></UserInput>
-      </label>
-      <label>
-        <UserInput
-          type="password"
-          required
-          placeholder="Lösenord"
-          value={user.password}
-          onChange={(event) =>
-            setUser({ ...user, password: event.target.value })
-          }
-        ></UserInput>
-      </label>
-      <Button type="submit">Skapa konto</Button>
-    </SignUpForm>
+    <>
+      {accountCreated ? (
+        // In the future: create email verification
+        <p>Your account created, please sign in.</p>
+      ) : (
+        <SignUpForm onSubmit={handleSubmit}>
+          <label>
+            <UserInput
+              type="text"
+              required
+              placeholder="Förnamn"
+              value={user.firstName}
+              onChange={(event) =>
+                setUser({ ...user, firstName: event.target.value })
+              }
+            ></UserInput>
+          </label>
+          <label>
+            <UserInput
+              type="text"
+              required
+              placeholder="Efternamn"
+              value={user.lastName}
+              onChange={(event) =>
+                setUser({ ...user, lastName: event.target.value })
+              }
+            ></UserInput>
+          </label>
+          <label>
+            <UserInput
+              type="email"
+              required
+              placeholder="E-post"
+              value={user.email}
+              onChange={(event) =>
+                setUser({ ...user, email: event.target.value })
+              }
+            ></UserInput>
+          </label>
+          <label>
+            <UserInput
+              type="password"
+              required
+              placeholder="Lösenord"
+              value={user.password}
+              onChange={(event) =>
+                setUser({ ...user, password: event.target.value })
+              }
+            ></UserInput>
+          </label>
+          <Button type="submit">Skapa konto</Button>
+        </SignUpForm>
+      )}
+    </>
   );
 };
 

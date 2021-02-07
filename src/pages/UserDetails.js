@@ -7,24 +7,23 @@ import { users } from "../reducers/users";
 import { updateFetch } from "../reducers/userFetch";
 
 export const UserDetails = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((store) => store.users.user);
-
   const [editUser, setEditUser] = useState(false);
   const [editedUser, setEditedUser] = useState({
+    id: user.id,
     accessToken: user.accessToken,
     email: user.email,
     firstName: user.firstName,
     lastName: user.lastName,
-  });
-  const dispatch = useDispatch();
-  const history = useHistory();
+  });  
 
   if (!user.accessToken) {
     history.push("/");
   }
 
   const handleOnChange = () => {
-    console.log(`Redigera användarprofil för ${user.firstName}`);
     setEditUser(true);
   };
 
@@ -38,8 +37,7 @@ export const UserDetails = () => {
     } else if (editedUser.lastName.length < 2) {
       console.log("Efternamn måste vara minst två tecken långt.");
     } else {
-      dispatch(users.actions.update(editedUser));
-      setEditedUser({ email: "", firstName: "", lastName: "" });
+      dispatch(updateFetch(editedUser));
       setEditUser(false);
     }
   };
@@ -51,7 +49,6 @@ export const UserDetails = () => {
   return (
     <>
       <h2>Min profil</h2>
-      <form>
         <h3>
           E-post:{" "}
           {editUser ? (
@@ -117,7 +114,6 @@ export const UserDetails = () => {
         ) : (
           <Button onClick={handleOnChange}>Redigera profil</Button>
         )}
-      </form>
       <Button onClick={handleOnLogOut}>Log out</Button>
     </>
   );
