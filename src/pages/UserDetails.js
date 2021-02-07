@@ -4,15 +4,20 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components/macro";
 
 import { users } from "../reducers/users";
+import { updateFetch } from "../reducers/userFetch";
 
 export const UserDetails = () => {
   const user = useSelector((store) => store.users.user);
-  const [editUser, setEditUser] = useState({ user });
+
+  const [editUser, setEditUser] = useState(false);
+  const [editedUser, setEditedUser] = useState({
+    accessToken: user.accessToken,
+    email: user.email,
+    firstName: user.firstName,
+    lastName: user.lastName,
+  });
   const dispatch = useDispatch();
   const history = useHistory();
-
-  console.log({ user });
-  console.log({ editUser });
 
   if (!user.accessToken) {
     history.push("/");
@@ -20,6 +25,7 @@ export const UserDetails = () => {
 
   const handleOnChange = () => {
     console.log(`Redigera användarprofil för ${user.firstName}`);
+    setEditUser(true);
   };
 
   const handleOnLogOut = () => {
@@ -27,47 +33,92 @@ export const UserDetails = () => {
   };
 
   const handleOnSave = () => {
+    if (editedUser.firstName.length < 2) {
+      console.log("Förnamn måste vara minst två tecken långt.");
+    } else if (editedUser.lastName.length < 2) {
+      console.log("Efternamn måste vara minst två tecken långt.");
+    } else {
+      dispatch(users.actions.update(editedUser));
+      setEditedUser({ email: "", firstName: "", lastName: "" });
+      setEditUser(false);
+    }
+  };
 
-  }
+  const handleOnCancel = () => {
+    setEditUser(false);
+  };
 
   return (
     <>
       <h2>Min profil</h2>
-      <h3>E-post: {user.email}</h3>
-      <h3>Förnamn: {user.firstName}</h3>
-      <h3>Efternamn: {user.lastName}</h3>
-      <button onClick={handleOnChange}>Redigera profil</button>
+      <form>
+        <h3>
+          E-post:{" "}
+          {editUser ? (
+            <label>
+              <input
+                value={editedUser.email}
+                onChange={(event) =>
+                  setEditedUser({ ...editedUser, email: event.target.value })
+                }
+                type="email"
+                required
+              ></input>
+            </label>
+          ) : (
+            user.email
+          )}
+        </h3>
 
+        <h3>
+          Förnamn:{" "}
+          {editUser ? (
+            <label>
+              <input
+                value={editedUser.firstName}
+                onChange={(event) =>
+                  setEditedUser({
+                    ...editedUser,
+                    firstName: event.target.value,
+                  })
+                }
+                type="text"
+                required
+              ></input>
+            </label>
+          ) : (
+            user.firstName
+          )}
+        </h3>
+
+        <h3>
+          Efternamn:{" "}
+          {editUser ? (
+            <label>
+              <input
+                value={editedUser.lastName}
+                onChange={(event) =>
+                  setEditedUser({ ...editedUser, lastName: event.target.value })
+                }
+                type="text"
+                required
+              ></input>
+            </label>
+          ) : (
+            user.lastName
+          )}
+        </h3>
+
+        {editUser ? (
+          <>
+            <Button onClick={handleOnSave}>Spara</Button>
+            <Button onClick={handleOnCancel}>Avbryt</Button>
+          </>
+        ) : (
+          <Button onClick={handleOnChange}>Redigera profil</Button>
+        )}
+      </form>
       <Button onClick={handleOnLogOut}>Log out</Button>
-
-      <label>
-        E-post
-        <input
-          value={editUser.email}
-          onChange={(event) => setEditUser({ ...editUser, email: event.target.value })}
-          type="email"
-          required
-        ></input>
-      </label>
-      <label>
-        Förnamn
-        <input
-          value={editUser.firstName}
-          onChange={(event) => setEditUser({ ...editUser, firstName: event.target.value })}
-          type="text"
-          required
-        ></input>
-      </label>
-      <label>
-        Efternamn
-        <input
-          value={editUser.lastName}
-          onChange={(event) => setEditUser({ ...editUser, lastName: event.target.value })}
-          type="text"
-          required
-        ></input>
-      </label>
-      <button onClick={handleOnSave}>Spara</button>
     </>
   );
 };
