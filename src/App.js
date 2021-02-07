@@ -4,11 +4,11 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import { users } from "./reducers/users";
-import { categories } from "./reducers/categories";
 import { locals } from "./reducers/locals";
 import { Main } from "./components/Main";
 import { Header } from "./components/Header"
-import { LandingPage } from "./pages/LandingPage"
+import { LandingPage } from "./pages/LandingPage";
+import { LocalsListPage } from "./pages/LocalsListPage"
 import { LogIn } from "./pages/LogIn"
 import { SignUp } from "./pages/SignUp"
 import { UserDetails } from "./pages/UserDetails"
@@ -17,11 +17,13 @@ import { Footer } from "./components/Footer"
 
 const reducer = combineReducers({
   users: users.reducer,
-  categories: categories.reducer,
   locals: locals.reducer
 });
 
-const store = configureStore({ reducer });
+const store = configureStore({ 
+  reducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+ });
 
 export const App = () => {
   return (
@@ -32,6 +34,9 @@ export const App = () => {
           <Switch>
             <Route path="/" exact>
               <LandingPage />
+            </Route>
+            <Route path="/locals/:category">
+              <LocalsListPage />
             </Route>
             <Route path="/login" exact>
               <LogIn />

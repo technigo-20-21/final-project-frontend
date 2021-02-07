@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import { CATEGORIES_URL } from "../urls"
 import { CategoryThumb } from "../components/CategoryThumb"
@@ -9,6 +10,7 @@ export const LandingPage = () => {
   const [categories, setCategories] = useState();
   const [fetchStatus, setFetchStatus] = useState({});
 
+  const { name } = useParams();
 
   const fetchCategoriesContent = () => {
     fetch(CATEGORIES_URL)
@@ -19,7 +21,6 @@ export const LandingPage = () => {
       return res.json();
       })
       .then(categoriesList => {
-        console.log(categoriesList);
         setCategories(categoriesList);
         setFetchStatus({ status: "fulfilled" });
       })
@@ -28,7 +29,7 @@ export const LandingPage = () => {
   
   useEffect(() => {
     fetchCategoriesContent();
-  }, []);
+  }, [name]);
 
   return (
     <Container>

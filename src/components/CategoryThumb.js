@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
+import { Link } from "react-router-dom";
 import {
   ImageLink,
   ImageContent,
@@ -6,15 +7,14 @@ import {
   CategoryIcon
 } from "../library/CategoryThumbStyles";
 
-export const CategoryThumb = ({ display_name, img_url }) => {
-  console.log("Hej");
-  console.log(img_url);
+export const CategoryThumb = ({ name, display_name, img_url }) => {
+
   return (
-      <ImageLink href="#">
+      <Link to={`/locals/${name}`} >
         <ImageContent url={img_url}>
           <CategoryText>{display_name}</CategoryText>
           <CategoryIcon className="fas fa-chevron-circle-left"></CategoryIcon>
         </ImageContent>
-      </ImageLink>
+      </Link>
   );
 };
