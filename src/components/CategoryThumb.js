@@ -5,7 +5,7 @@ import {
   ThumbImage,
   ThumbText, 
   ThumbIcon
-} from "../library/CategoryThumbStyles";
+} from "../library/ThumbStyles";
 
 export const CategoryThumb = ({ name, display_name, img_url }) => {
 

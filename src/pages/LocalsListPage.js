@@ -1,27 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+
 import { locals } from "../reducers/locals";
 import { fetchLocalsList } from "../reducers/localsFetch";
 import { LocalsListThumb } from "../components/LocalsListThumb";
-import { Container } from "../library/LandingPageStyles";import {
-  Container,
-  ThumbImage,
-  Image,
-  ImageContent,
-} from "../library/LandingPageStyles";
-import { fetchLocalsList } from "../reducers/localsFetch";
-import { locals } from "../reducers/locals";
+import { Container } from "../library/LandingPageStyles";
 
 export const LocalsListPage = () => {
   const dispatch = useDispatch();
+  const { category } = useParams();
 
-  const localsListStatus = useSelector((state) => state.locals.status);
   const [loc, setLoc] = useState([{}]);
   const [fetchStatus, setFetchStatus] = useState({});
 
 
-  const { category } = useParams();
 
   const handleFetchSuccess = (fetchedLocals) => {
     const localsList = fetchedLocals.payload;
