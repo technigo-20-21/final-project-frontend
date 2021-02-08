@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 
 
 
-export const ImageLink = styled.a`
+export const ThumbLink = styled.a`
   width: 100%;
   text-decoration: none;
   color: black;
@@ -18,7 +18,7 @@ export const ImageLink = styled.a`
 `;
 
 // Move up
-export const ImageContent = styled.div`
+export const ThumbImage = styled.div`
   height: 300px;
   background-image: url("${props => props.url}");
   background-size: cover;
@@ -32,13 +32,13 @@ export const ImageContent = styled.div`
   flex-wrap: wrap;
 `;
 
-export const CategoryText = styled.p`
+export const ThumbText = styled.p`
   margin: 10px;
   width: 100%;
   text-align: center;
   text-transform: uppercase;
   font-weight: 700;
 `
-export const CategoryIcon = styled.span`
+export const ThumbIcon = styled.span`
   text-align: center;
 `

@@ -8,7 +8,8 @@ import { locals } from "./reducers/locals";
 import { Main } from "./components/Main";
 import { Header } from "./components/Header"
 import { LandingPage } from "./pages/LandingPage";
-import { LocalsListPage } from "./pages/LocalsListPage"
+import { LocalsListPage } from "./pages/LocalsListPage";
+import { LocalPage } from "./pages/LocalPage";
 import { LogIn } from "./pages/LogIn"
 import { SignUp } from "./pages/SignUp"
 import { UserDetails } from "./pages/UserDetails"
@@ -25,6 +26,23 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
  });
 
+ /*	
+// Retrieve the localstorage and use it as our initial state	
+const persistedStateJSON = localStorage.getItem("reduxState")	
+console.log({persistedStateJSON})	
+let persistedState = {} //preloadedState	
+if (persistedStateJSON) {	
+  persistedState = JSON.parse(persistedStateJSON)	
+}	
+console.log({persistedState})	
+// Create the store using the initial state	
+export const store = configureStore({reducer, persistedState})	
+// Store the state in localstorage on any redux state change	
+store.subscribe(() => {	
+  localStorage.setItem('reduxState', JSON.stringify(store.getState()))	
+})	
+*/
+
 export const App = () => {
   return (
     <Provider store={store}>
@@ -37,6 +55,9 @@ export const App = () => {
             </Route>
             <Route path="/locals/:category">
               <LocalsListPage />
+            </Route>
+            <Route path="/local/:id">
+              <LocalPage />
             </Route>
             <Route path="/login" exact>
               <LogIn />
