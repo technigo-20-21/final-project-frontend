@@ -64,9 +64,9 @@ export const logInFetch = (user) => {
   };
 };
 
-export const updateFetch = (user) => {
+export const updateUserFetch = (user) => {
   return (dispatch) => {
-    const handleUpdateSuccess = (updateResponse) => {
+    const handleUpdateSuccess = () => {
       dispatch(users.actions.update(user));
     };
     const handleUpdateFailed = (updateError) => {
@@ -83,6 +83,7 @@ export const updateFetch = (user) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        // password: user.password,
       }),
     })
       .then((res) => {
