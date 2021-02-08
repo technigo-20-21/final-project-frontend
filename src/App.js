@@ -8,7 +8,8 @@ import { locals } from "./reducers/locals";
 import { Main } from "./components/Main";
 import { Header } from "./components/Header"
 import { LandingPage } from "./pages/LandingPage";
-import { LocalsListPage } from "./pages/LocalsListPage"
+import { LocalsListPage } from "./pages/LocalsListPage";
+import { LocalPage } from "./pages/LocalPage";
 import { LogIn } from "./pages/LogIn"
 import { SignUp } from "./pages/SignUp"
 import { UserDetails } from "./pages/UserDetails"
@@ -57,6 +58,9 @@ export const App = () => {
             </Route>
             <Route path="/locals/:category">
               <LocalsListPage />
+            </Route>
+            <Route path="local/:id">
+              <LocalPage />
             </Route>
             <Route path="/login" exact>
               <LogIn />

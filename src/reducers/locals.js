@@ -12,19 +12,11 @@ export const locals = createSlice({
     reducers: {
         getLocals: (state, action) => {
             state.locals = action.payload;
-    
-            // const existingLocal = state.locals.find(local => local._id === newLocal._id)
-            // if (!existingLocal) {
-            //     state.locals.push(action.payload);
-                
-            // }
-            state.status = 'succeeded';
         },
         updateLocals: (state, action) => {
 
         },
         errorMessageLocals: (state, action) => {
-            state.status = 'failed'
             state.error = action.payload;
             state.loading = false;
         },
