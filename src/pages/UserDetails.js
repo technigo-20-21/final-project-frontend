@@ -9,6 +9,7 @@ import { updateUserFetch } from "../reducers/userFetch";
 export const UserDetails = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const user = useSelector((store) => store.users.user);
   const [editUser, setEditUser] = useState(false);
   const [editedUser, setEditedUser] = useState({
@@ -19,6 +20,7 @@ export const UserDetails = () => {
     lastName: user.lastName,
     // password: user.password,
   });
+  const [userMessage, setUserMessage] = useState(null);
 
   if (!user.accessToken) {
     history.push("/");
@@ -31,12 +33,13 @@ export const UserDetails = () => {
   const handleOnSave = (event) => {
     event.preventDefault();
     if (editedUser.firstName.length < 2) {
-      console.log("Förnamn måste vara minst två tecken långt.");
+      setUserMessage("Förnamn måste vara minst två tecken långt.");
     } else if (editedUser.lastName.length < 2) {
-      console.log("Efternamn måste vara minst två tecken långt.");
+      setUserMessage("Efternamn måste vara minst två tecken långt.");
     } else {
       dispatch(updateUserFetch(editedUser));
       setEditUser(false);
+      setUserMessage(null)
     }
 
     // else if (editedUser.password.length < 6) {
@@ -46,6 +49,7 @@ export const UserDetails = () => {
 
   const handleOnCancel = () => {
     setEditUser(false);
+    setUserMessage(null)
   };
 
   const handleOnLogOut = () => {
@@ -54,10 +58,11 @@ export const UserDetails = () => {
 
   return (
     <MainContainer>
-    <LogoutContainer><h2>{editUser ? "Redigera profil" : "Min profil"}</h2>
-    <Button onClick={handleOnLogOut}>Logga ut</Button></LogoutContainer>
+      <LogoutContainer>
+        <h2>{editUser ? "Redigera profil" : "Min profil"}</h2>
+        <Button onClick={handleOnLogOut}>Logga ut</Button>
+      </LogoutContainer>
       <LogInForm onSubmit={handleOnSave}>
-        
         <Container>
           <LabelHeader>E-post: </LabelHeader>
           {editUser ? (
@@ -133,6 +138,7 @@ export const UserDetails = () => {
                 ></UserInput>
               </label>
             </Container> */}
+            {userMessage ? <p>{userMessage}</p>: null}
             <Container>
               <Button>Spara</Button>
               <Button onClick={handleOnCancel}>Avbryt</Button>
@@ -143,13 +149,13 @@ export const UserDetails = () => {
             <Button onClick={handleOnChange}>Redigera profil</Button>
           </Container>
         )}
-      </LogInForm>      
+      </LogInForm>
     </MainContainer>
   );
 };
 
 const MainContainer = styled.div`
-margin: 20px;
+  margin: 20px;
   border: 1px solid #e9eaed;
   // border: 1px solid #d4d6db;
 `;
@@ -159,7 +165,7 @@ const LogoutContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 30px 30px 0 30px;
-`
+`;
 
 const LogInForm = styled.form`
   padding: 30px;
@@ -196,5 +202,3 @@ const Button = styled.button`
   color: #fff;
   outline: none;
 `;
-
-

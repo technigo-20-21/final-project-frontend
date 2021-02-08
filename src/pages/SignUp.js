@@ -13,13 +13,25 @@ export const SignUp = () => {
     email: "",
     password: "",
   });
+  const [userMessage, setUserMessage] = useState(null);
   const [accountCreated, setAccountCreated] = useState(false);
   const statusMessage = useSelector((store) => store.users.statusMessage);
 
+  console.log({ userMessage });
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(signUpFetch(user));
-    setUser({ firstName: "", lastName: "", email: "", password: "" });
+    if (user.firstName.length < 2) {
+      setUserMessage("Förnamn måste vara minst två tecken långt.");
+    } else if (user.lastName.length < 2) {
+      setUserMessage("Efternamn måste vara minst två tecken långt.");
+    } else if (user.password.length < 6) {
+      setUserMessage("Lösenord måste vara minst sex tecken långt.");
+    } else {
+      dispatch(signUpFetch(user));
+      setUser({ firstName: "", lastName: "", email: "", password: "" });
+      setUserMessage(null);
+    }
   };
 
   if (statusMessage === "User account created") {
@@ -31,7 +43,9 @@ export const SignUp = () => {
     <>
       {accountCreated ? (
         // In the future: create email verification
-        <p>Your account created, please sign in.</p>
+        <AccoutCreatedText>
+          Ditt användarkonto är skapat, nu kan du logga in.
+        </AccoutCreatedText>
       ) : (
         <SignUpForm onSubmit={handleSubmit}>
           <label>
@@ -78,6 +92,7 @@ export const SignUp = () => {
               }
             ></UserInput>
           </label>
+          {userMessage ? <p>{userMessage}</p> : null}
           <Button type="submit">Skapa konto</Button>
         </SignUpForm>
       )}
@@ -110,4 +125,10 @@ const Button = styled.button`
   font-size: 16px;
   color: #fff;
   outline: none;
+`;
+
+const AccoutCreatedText = styled.p`
+  margin: 100px 0;
+  text-align: center;
+  color: #29354b;
 `;

@@ -6,10 +6,13 @@ import styled from "styled-components/macro";
 import { logInFetch } from "../reducers/userFetch";
 
 export const LogIn = () => {
-  const accessToken = useSelector((store) => store.users.user.accessToken)
+  const accessToken = useSelector((store) => store.users.user.accessToken);
+  const statusMessage = useSelector((store) => store.users.statusMessage);
   const [user, setUser] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
   const history = useHistory();
+
+  console.log({ statusMessage });
 
   if (accessToken) {
     history.push("/");
@@ -18,7 +21,7 @@ export const LogIn = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(logInFetch(user));
-    setUser({ email: "", password: "" });  
+    setUser({ email: "", password: "" });
   };
 
   return (
@@ -44,6 +47,7 @@ export const LogIn = () => {
           }
         ></UserInput>
       </label>
+      {statusMessage ? <p>{statusMessage}</p> : null}
       <Button type="submit">Log in</Button>
       <SignUp>
         Saknar du ett konto?{" "}

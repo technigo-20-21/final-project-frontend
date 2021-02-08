@@ -55,7 +55,7 @@ export const logInFetch = (user) => {
     })
       .then((res) => {
         if (!res.ok) {
-          throw "Log in failed";
+          throw "Kunde inte logga in, kontrollera dina användaruppgifter.";
         }
         return res.json();
       })
