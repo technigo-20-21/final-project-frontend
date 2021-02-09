@@ -1,8 +1,5 @@
 import { users } from "./users";
-import { MESSAGE_URL } from ".././urls";
-
-const SIGNUP_URL = "http://localhost:8080/users";
-const LOGIN_URL = "http://localhost:8080/sessions";
+import { SIGNUP_URL, LOGIN_URL } from ".././urls";
 
 export const signUpFetch = (user) => {
   return (dispatch) => {
@@ -58,7 +55,7 @@ export const logInFetch = (user) => {
     })
       .then((res) => {
         if (!res.ok) {
-          throw "Log in failed";
+          throw "Kunde inte logga in, kontrollera dina användaruppgifter.";
         }
         return res.json();
       })
@@ -67,14 +64,12 @@ export const logInFetch = (user) => {
   };
 };
 
-export const updateFetch = (user) => {
+export const updateUserFetch = (user) => {
   return (dispatch) => {
-    const handleUpdateSuccess = (updateResponse) => {
-      console.log({updateResponse})
-      dispatch(users.actions.update(updateResponse));
+    const handleUpdateSuccess = () => {
+      dispatch(users.actions.update(user));
     };
     const handleUpdateFailed = (updateError) => {
-      console.log("in handleUpdateFailed")
       dispatch(users.actions.setStatusMessage({ statusMessage: updateError }));
     };
 
@@ -88,6 +83,7 @@ export const updateFetch = (user) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        // password: user.password,
       }),
     })
       .then((res) => {

@@ -2,47 +2,45 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: {
+    id: localStorage.id || null,
     accessToken: localStorage.accessToken || null,
     firstName: localStorage.firstName || null,
-    lastName: localStorage.lastName || "",
-    email: localStorage.email || "",
+    lastName: localStorage.lastName || null,
+    email: localStorage.email || null,
   },
-  statusMessage: "",
+  statusMessage: null,
 };
-
-
 
 export const users = createSlice({
   name: "users",
   initialState,
   reducers: {
     logIn: (state, action) => {
-      const { accessToken, firstName, lastName, email } = action.payload;
+      const { id, accessToken, firstName, lastName, email } = action.payload;
+      state.user.id = id;
       state.user.accessToken = accessToken;
-      state.user.firstName = firstName;      
-      state.user.lastName = lastName;      
+      state.user.firstName = firstName;
+      state.user.lastName = lastName;
       state.user.email = email;
+      localStorage.setItem("id", id);
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("firstName", firstName);
       localStorage.setItem("lastName", lastName);
       localStorage.setItem("email", email);
     },
     logOut: (state, action) => {
+      state.user.id = null;
       state.user.accessToken = null;
-      state.user.firstName = "";
-      state.user.lastName = "";
-      state.user.email = "";
-      localStorage.removeItem("accessToken");
-      localStorage.removeItem("firstName");
-      localStorage.removeItem("lastName");
-      localStorage.removeItem("email");
+      state.user.firstName = null;
+      state.user.lastName = null;
+      state.user.email = null;
+      localStorage.clear();
     },
     update: (state, action) => {
       const { firstName, lastName, email } = action.payload;
       state.user.firstName = firstName;
       state.user.lastName = lastName;
       state.user.email = email;
-      console.log("E: " + email)
       localStorage.setItem("firstName", firstName);
       localStorage.setItem("lastName", lastName);
       localStorage.setItem("email", email);
