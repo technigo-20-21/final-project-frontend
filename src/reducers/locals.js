@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchLocalsList } from './localsFetch';
+import { fetchLocalsList, fetchLocal } from './localsFetch';
 const initialState = {
     locals: [],
     status: 'idle',
@@ -12,17 +12,8 @@ export const locals = createSlice({
     reducers: {
         getLocals: (state, action) => {
             state.locals = action.payload;
-    
-            // const existingLocal = state.locals.find(local => local._id === newLocal._id)
-            // if (!existingLocal) {
-            //     state.locals.push(action.payload);
-                
-            // }
-            state.status = 'succeeded';
         },
-        updateLocals: (state, action) => {
-
-        },
+        
         errorMessageLocals: (state, action) => {
             state.status = 'failed'
             state.error = action.payload;
@@ -34,13 +25,23 @@ export const locals = createSlice({
             },
             [fetchLocalsList.fulfilled]: (state, action) => {
                 state.status = 'succeeded';
-                // console.log(action.payload)
-                // state.locals.push(action.payload)
             },
             [fetchLocalsList.rejected]: (state, action) => {
                 state.status = 'failed';
-                state.errorMessage = action.error.message
+                state.error = action.error.message
+            },
+            [fetchLocal.pending]: (state, action) => {
+                state.status = 'loading'
+            },
+            [fetchLocal.fulfilled]: (state, action) => {
+                state.status = 'succeeded';
+            },
+            [fetchLocal.rejected]: (state, action) => {
+                state.status = 'failed';
+                state.error = action.error.message
             }
+
         }
     }
-})
+});
+

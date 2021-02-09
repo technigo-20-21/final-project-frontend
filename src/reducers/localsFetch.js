@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { LOCALS_URL } from "../urls";
+import { LOCALS_URL, LOCAL_URL } from "../urls";
 
 export const fetchLocalsList = createAsyncThunk(
   "locals/fetchLocalsList",
@@ -13,3 +13,16 @@ export const fetchLocalsList = createAsyncThunk(
     }
   }
 );
+
+export const fetchLocal = createAsyncThunk(
+    "locals/fetchLocal",
+    async (localId) => {
+      try {
+        const url = `${LOCAL_URL}/${localId}`;
+        const response = await fetch(url);
+        return await response.json();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  );
