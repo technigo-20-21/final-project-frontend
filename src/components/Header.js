@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components/macro";
 
 export const Header = () => {
@@ -21,23 +21,17 @@ export const Header = () => {
         )}
       </TopRow>
       <MainRow>
-        <Title>Torslanda locals</Title>
+        <Title to="/">Torslanda locals</Title>
         <SubTitle>Restauranger, service och affärer nära dig</SubTitle>
       </MainRow>
       <BottomRow>
         <Nav>
-          <NavLink to={"/locals/service"}>Service</NavLink>
-          <NavLink to={"/locals/cafe"}>Fika</NavLink>
-          <NavLink to={"/locals/groceries"}>Mat &amp; götta</NavLink>
-          <NavLink to={"/locals/shopping"}>Shoppa</NavLink>
-          <NavLink to={"/locals/restaurant"}>Äta ute</NavLink>
-          <NavLink to={"/locals/beauty"}>Hälsa &amp; Skönhet</NavLink>
-
-          {/* <NavLink href="#">Äta ute</NavLink>
-          <NavLink href="#">Shopping</NavLink>
-          <NavLink href="#">Hälsa &amp; Skönhet</NavLink>
-          <NavLink href="#">Mat &amp; götta</NavLink> */}
-          {/* <NavLink href="#">Service</NavLink> */}
+          <LocalLink to={"/locals/service"}>Service</LocalLink>
+          <LocalLink to={"/locals/cafe"}>Fika</LocalLink>
+          <LocalLink to={"/locals/groceries"}>Mat &amp; götta</LocalLink>
+          <LocalLink to={"/locals/shopping"}>Shoppa</LocalLink>
+          <LocalLink to={"/locals/restaurant"}>Äta ute</LocalLink>
+          <LocalLink to={"/locals/beauty"}>Hälsa &amp; Skönhet</LocalLink>
         </Nav>
       </BottomRow>
     </>
@@ -90,11 +84,14 @@ const MainRow = styled.section`
   justify-content: center;
 `;
 
-const Title = styled.h1`
+const Title = styled(Link)`
   font-family: "Poiret One", cursive;
+  color: #fff;
+  text-decoration: none;
   font-size: 50px;
+  font-weight: bold;
   letter-spacing: 1.6px;
-  margin-bottom: 0;
+  margin: 40px 0 0 0;
 `;
 
 const SubTitle = styled.h2`
@@ -111,7 +108,7 @@ const Nav = styled.div`
   padding: 15px;
 `;
 
-const NavLink = styled(Link)`
+const LocalLink = styled(NavLink)`
   margin-top: 5px;
   padding: 5px 10px;
   text-decoration: none;

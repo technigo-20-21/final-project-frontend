@@ -20,3 +20,8 @@ code {
 .leaflet-container {
   height: 800px;
 }
+
+a.active {
+  font-weight: 700;
+  border-image: linear-gradient(to right, transparent, #999, transparent) 5;
+}

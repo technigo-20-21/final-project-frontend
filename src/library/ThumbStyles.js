@@ -1,15 +1,21 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 
 // Change color to white, media query doesn't work
 
 
 
-export const ThumbLink = styled.a`
+export const ThumbLink = styled(Link)`
   width: 100%;
   text-decoration: none;
   color: black;
   text-align: center;
   position: relative;
+  filter: opacity(0.7);
+
+  &:hover {
+    filter: opacity(1);
+  }
 
 //   @media only screen and (min-width: 950px) {
 //     width: 100%;
