@@ -27,12 +27,13 @@ export const LocalsListPage = () => {
       dispatch(fetchLocalsList(category))
         .then(result => {
           const localsList = result.payload
-  	      // handleFetchSuccess(result);
+  	      console.log(localsList)
           setLoc(localsList);
           dispatch(locals.actions.getLocals(localsList));
         })
   }, [dispatch, category]);
 
+  console.log(category)
   return (
     <Container>
       {loc && loc.map(local => (

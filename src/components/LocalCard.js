@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { locals } from "../reducers/locals";
 
 export const LocalCard = ({ loc }) => {
-    
+
     return (
         <>
         <h1>{loc.name}</h1>
