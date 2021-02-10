@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components/macro";
 
 import { users } from "../reducers/users";
@@ -8,8 +7,6 @@ import { updateUserFetch } from "../reducers/userFetch";
 
 export const UserDetails = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
-
   const user = useSelector((store) => store.users.user);
   const [editUser, setEditUser] = useState(false);
   const [editedUser, setEditedUser] = useState({
@@ -21,10 +18,6 @@ export const UserDetails = () => {
     // password: user.password,
   });
   const [userMessage, setUserMessage] = useState(null);
-
-  if (!user.accessToken) {
-    history.push("/");
-  }
 
   const handleOnChange = () => {
     setEditUser(true);
@@ -39,7 +32,7 @@ export const UserDetails = () => {
     } else {
       dispatch(updateUserFetch(editedUser));
       setEditUser(false);
-      setUserMessage(null)
+      setUserMessage(null);
     }
 
     // else if (editedUser.password.length < 6) {
@@ -49,7 +42,7 @@ export const UserDetails = () => {
 
   const handleOnCancel = () => {
     setEditUser(false);
-    setUserMessage(null)
+    setUserMessage(null);
   };
 
   const handleOnLogOut = () => {
@@ -57,11 +50,8 @@ export const UserDetails = () => {
   };
 
   return (
-    <MainContainer>
-      <LogoutContainer>
-        <h2>{editUser ? "Redigera profil" : "Min profil"}</h2>
-        <Button onClick={handleOnLogOut}>Logga ut</Button>
-      </LogoutContainer>
+    <UserDetailsContainer>
+      <h2>{editUser ? "Redigera profil" : "Min profil"}</h2>
       <LogInForm onSubmit={handleOnSave}>
         <Container>
           <LabelHeader>E-post: </LabelHeader>
@@ -138,37 +128,33 @@ export const UserDetails = () => {
                 ></UserInput>
               </label>
             </Container> */}
-            {userMessage ? <p>{userMessage}</p>: null}
+            {userMessage ? <p>{userMessage}</p> : null}
             <Container>
               <Button>Spara</Button>
               <Button onClick={handleOnCancel}>Avbryt</Button>
+              <Button onClick={handleOnLogOut}>Logga ut</Button>
             </Container>
           </>
         ) : (
           <Container>
             <Button onClick={handleOnChange}>Redigera profil</Button>
+            <Button onClick={handleOnLogOut}>Logga ut</Button>
           </Container>
         )}
       </LogInForm>
-    </MainContainer>
+    </UserDetailsContainer>
   );
 };
 
-const MainContainer = styled.div`
-  margin: 20px;
-  border: 1px solid #e9eaed;
-  // border: 1px solid #d4d6db;
-`;
-
-const LogoutContainer = styled.div`
+const UserDetailsContainer = styled.div`
+  width: 50%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  margin: 30px 30px 0 30px;
 `;
 
 const LogInForm = styled.form`
-  padding: 30px;
+//   padding: 30px;
   display: flex;
   flex-direction: column;
 `;

@@ -15,7 +15,7 @@ export const Header = () => {
           </Link>
         )}
         {accessToken && (
-          <Link to="/userdetails">
+          <Link to="/userpage">
             <UserIcon src="../img/user-icon.png"></UserIcon>
           </Link>
         )}

@@ -7,6 +7,7 @@ const initialState = {
     firstName: localStorage.firstName || null,
     lastName: localStorage.lastName || null,
     email: localStorage.email || null,
+    favourites: localStorage.email || null,
   },
   statusMessage: null,
 };
@@ -16,17 +17,19 @@ export const users = createSlice({
   initialState,
   reducers: {
     logIn: (state, action) => {
-      const { id, accessToken, firstName, lastName, email } = action.payload;
+      const { id, accessToken, firstName, lastName, email, favourites } = action.payload;
       state.user.id = id;
       state.user.accessToken = accessToken;
       state.user.firstName = firstName;
       state.user.lastName = lastName;
       state.user.email = email;
+      state.user.favourites = favourites;
       localStorage.setItem("id", id);
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("firstName", firstName);
       localStorage.setItem("lastName", lastName);
       localStorage.setItem("email", email);
+      localStorage.setItem("favourites", favourites);
     },
     logOut: (state, action) => {
       state.user.id = null;

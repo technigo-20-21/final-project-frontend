@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
+import { useHistory } from "react-router-dom";
 
 import { users } from "../reducers/users";
 import { signUpFetch } from "../reducers/userFetch";
 
 export const SignUp = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [user, setUser] = useState({
     firstName: "",
@@ -15,9 +17,12 @@ export const SignUp = () => {
   });
   const [userMessage, setUserMessage] = useState(null);
   const [accountCreated, setAccountCreated] = useState(false);
+  const accessToken = useSelector((store) => store.users.user.accessToken);
   const statusMessage = useSelector((store) => store.users.statusMessage);
 
-  console.log({ userMessage });
+  if (accessToken) {
+    history.push("/");
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
