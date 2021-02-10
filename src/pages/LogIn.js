@@ -12,8 +12,6 @@ export const LogIn = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  console.log({ statusMessage });
-
   if (accessToken) {
     history.push("/");
   }

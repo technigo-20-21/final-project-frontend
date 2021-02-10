@@ -26,11 +26,18 @@ export const Header = () => {
       </MainRow>
       <BottomRow>
         <Nav>
-          <NavLink href="#">Äta ute</NavLink>
+          <NavLink to={"/locals/service"}>Service</NavLink>
+          <NavLink to={"/locals/cafe"}>Fika</NavLink>
+          <NavLink to={"/locals/groceries"}>Mat &amp; götta</NavLink>
+          <NavLink to={"/locals/shopping"}>Shoppa</NavLink>
+          <NavLink to={"/locals/restaurant"}>Äta ute</NavLink>
+          <NavLink to={"/locals/beauty"}>Hälsa &amp; Skönhet</NavLink>
+
+          {/* <NavLink href="#">Äta ute</NavLink>
           <NavLink href="#">Shopping</NavLink>
           <NavLink href="#">Hälsa &amp; Skönhet</NavLink>
-          <NavLink href="#">Mat &amp; götta</NavLink>
-          <NavLink href="#">Service</NavLink>
+          <NavLink href="#">Mat &amp; götta</NavLink> */}
+          {/* <NavLink href="#">Service</NavLink> */}
         </Nav>
       </BottomRow>
     </>
@@ -104,7 +111,8 @@ const Nav = styled.div`
   padding: 15px;
 `;
 
-const NavLink = styled.a`
+const NavLink = styled(Link)`
+  margin-top: 5px;
   padding: 5px 10px;
   text-decoration: none;
   color: #29354b;
