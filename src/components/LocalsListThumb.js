@@ -1,7 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+// import { Link } from "react-router-dom";
+
+// import { users } from "../reducers/users";
+import { updateUserFetch } from "../reducers/userFetch";
 
 import {
+  CardContainer,
   LocalLink,
   ThumbImage,
   ThumbText,
@@ -11,24 +16,47 @@ import {
 } from "../library/ThumbStyles";
 
 export const LocalsListThumb = ({ _id, tagline, img_url }) => {
-  const [liked, setLiked] = useState(false);
+  const dispatch = useDispatch();
+  const [user, setUser] = useState(useSelector((store) => store.users.user));
+
+  console.log("user.favourites: " + user.favourites);
+
+  useEffect(() => {
+    console.log("Skickar: " + JSON.stringify(user))
+    dispatch(updateUserFetch(user));
+  }, [user])
 
   const handleOnClick = () => {
-    setLiked(!liked);
+    const isFavourite = user.favourites.includes(_id);
+    console.log({isFavourite})
+    if (isFavourite) {
+      const favouritesList = [user.favourites]
+      console.log({favouritesList}, typeof(favourites))
+      const removeFromList = favouritesList.filter((item) => item !== _id);
+      setUser({ ...user, favourites: removeFromList });
+    } else {
+      const addToList = [...user.favourites, _id]
+      setUser({ ...user, favourites: addToList });
+    }        
   };
 
   return (
-    <LocalLink to={`/local/${_id}`}>
-      <ThumbImage url={img_url}>
-        <Container>
-          <ThumbText>{tagline}</ThumbText>
-          <ThumbIcon className="fas fa-chevron-circle-left"></ThumbIcon>
-          <FavouriteHeart
-            src={liked ? "../img/heart.png" : "../img/heart-empty.png"}
-            onClick={handleOnClick}
-          ></FavouriteHeart>
-        </Container>
-      </ThumbImage>
-    </LocalLink>
+    <CardContainer>
+      <LocalLink to={`/local/${_id}`}>
+        <ThumbImage url={img_url} />
+        {/* <ThumbIcon className="fas fa-chevron-circle-left"></ThumbIcon> */}
+      </LocalLink>
+      <Container>
+        <ThumbText>{tagline}</ThumbText>
+        <FavouriteHeart
+          src={
+            user.favourites.includes(_id)
+              ? "../img/heart.png"
+              : "../img/heart-empty.png"
+          }
+          onClick={handleOnClick}
+        ></FavouriteHeart>
+      </Container>
+    </CardContainer>
   );
 };

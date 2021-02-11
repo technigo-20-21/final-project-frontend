@@ -16,6 +16,15 @@ export const CategoryLink = styled(Link)`
   //   }
 `;
 
+export const CardContainer = styled.div`
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid black;
+  width: 320px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0
+`
+
 export const LocalLink = styled(Link)`
   text-decoration: none;  
 `;
@@ -23,16 +32,18 @@ export const LocalLink = styled(Link)`
 // Move up
 export const ThumbImage = styled.div`
   height: 300px;
+  // width: 300px;
   background-image: url("${(props) => props.url}");
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
   font-size: 36px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  flex-wrap: wrap;
   filter: opacity(0.8);
 
   &:hover {
@@ -41,20 +52,16 @@ export const ThumbImage = styled.div`
 `;
 
 export const Container = styled.div`
-  height: 80%;
-  width: 90%;
+padding: 5px;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 `;
 
 export const ThumbText = styled.p`
   margin: 10px;
-  // width: 100%;
-  // text-align: center;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 700;  
 `;
 
 export const ThumbIcon = styled.span``;

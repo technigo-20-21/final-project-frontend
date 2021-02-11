@@ -65,9 +65,11 @@ export const logInFetch = (user) => {
 };
 
 export const updateUserFetch = (user) => {
+  console.log("Tar emot: " + JSON.stringify(user))
+
   return (dispatch) => {
     const handleUpdateSuccess = () => {
-      dispatch(users.actions.update(user));
+      dispatch(users.actions.updateUser(user));
     };
     const handleUpdateFailed = (updateError) => {
       dispatch(users.actions.setStatusMessage({ statusMessage: updateError }));
@@ -83,6 +85,7 @@ export const updateUserFetch = (user) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        favourites: user.favourites,
         // password: user.password,
       }),
     })
@@ -96,3 +99,33 @@ export const updateUserFetch = (user) => {
       .catch((err) => handleUpdateFailed(err));
   };
 };
+
+// export const updateFavouritesFetch = (user) => {
+//   return (dispatch) => {
+//     const handleUpdateSuccess = () => {
+//       dispatch(users.actions.updateFavourites(user));
+//     };
+//     const handleUpdateFailed = (updateError) => {
+//       dispatch(users.actions.setStatusMessage({ statusMessage: updateError }));
+//     };
+
+//     fetch(`http://localhost:8080/${user.id}/user`, {
+//       method: "PUT",
+//       headers: {
+//         "Content-Type": "application/JSON",
+//         Authorization: user.accessToken,
+//       },
+//       body: JSON.stringify({
+//         favourites: user.favourites,
+//       }),
+//     })
+//       .then((res) => {
+//         if (!res.ok) {
+//           throw "Could not update favourites";
+//         }
+//         return res.json();
+//       })
+//       .then((json) => handleUpdateSuccess(json))
+//       .catch((err) => handleUpdateFailed(err));
+//   };
+// };

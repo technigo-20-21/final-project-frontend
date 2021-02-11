@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import { users } from "./reducers/users";
 import { locals } from "./reducers/locals";
-import { Main } from "./components/Main";
 import { Header } from "./components/Header"
 import { LandingPage } from "./pages/LandingPage";
 import { LocalsListPage } from "./pages/LocalsListPage";
@@ -13,7 +12,6 @@ import { LocalPage } from "./pages/LocalPage";
 import { LogIn } from "./pages/LogIn"
 import { SignUp } from "./pages/SignUp"
 import { UserPage } from "./pages/UserPage"
-import { NotFound } from "./pages/NotFound"
 import { Footer } from "./components/Footer"
 
 const reducer = combineReducers({

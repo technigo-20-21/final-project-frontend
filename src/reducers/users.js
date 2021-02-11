@@ -7,7 +7,7 @@ const initialState = {
     firstName: localStorage.firstName || null,
     lastName: localStorage.lastName || null,
     email: localStorage.email || null,
-    favourites: localStorage.email || null,
+    favourites: localStorage.favourites || [],
   },
   statusMessage: null,
 };
@@ -17,7 +17,14 @@ export const users = createSlice({
   initialState,
   reducers: {
     logIn: (state, action) => {
-      const { id, accessToken, firstName, lastName, email, favourites } = action.payload;
+      const {
+        id,
+        accessToken,
+        firstName,
+        lastName,
+        email,
+        favourites,
+      } = action.payload;
       state.user.id = id;
       state.user.accessToken = accessToken;
       state.user.firstName = firstName;
@@ -37,9 +44,10 @@ export const users = createSlice({
       state.user.firstName = null;
       state.user.lastName = null;
       state.user.email = null;
+      state.user.favourites = null;
       localStorage.clear();
     },
-    update: (state, action) => {
+    updateUser: (state, action) => {
       const { firstName, lastName, email } = action.payload;
       state.user.firstName = firstName;
       state.user.lastName = lastName;
@@ -47,6 +55,21 @@ export const users = createSlice({
       localStorage.setItem("firstName", firstName);
       localStorage.setItem("lastName", lastName);
       localStorage.setItem("email", email);
+    },
+    updateFavourites: (state, action) => {
+      const id = action.payload;
+      var test = state.user.favourites.includes(id);
+      if (test) {
+        const filteredList = state.user.favourites.filter(
+          (item) => item !== id
+        );
+        state.user.favourites = filteredList;
+        localStorage.setItem("favourites", filteredList);
+      } else {
+        const favouritesArray = [...state.user.favourites, id];
+        state.user.favourites = favouritesArray;
+        localStorage.setItem("favourites", favouritesArray);
+      }
     },
     setStatusMessage: (state, action) => {
       state.statusMessage = action.payload.statusMessage;

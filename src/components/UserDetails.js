@@ -27,8 +27,12 @@ export const UserDetails = () => {
     event.preventDefault();
     if (editedUser.firstName.length < 2) {
       setUserMessage("Förnamn måste vara minst två tecken långt.");
+    } else if (editedUser.firstName.length > 20) {
+      setUserMessage("Förnamn kan vara max 20 tecken långt.");
     } else if (editedUser.lastName.length < 2) {
       setUserMessage("Efternamn måste vara minst två tecken långt.");
+    } else if (editedUser.lastName.length > 20) {
+      setUserMessage("Efternamn kan vara max 20 tecken långt.");
     } else {
       dispatch(updateUserFetch(editedUser));
       setEditUser(false);
@@ -154,7 +158,7 @@ const UserDetailsContainer = styled.div`
 `;
 
 const LogInForm = styled.form`
-//   padding: 30px;
+  //   padding: 30px;
   display: flex;
   flex-direction: column;
 `;

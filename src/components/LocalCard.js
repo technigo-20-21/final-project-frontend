@@ -1,7 +1,7 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { locals } from "../reducers/locals";
+// import { useSelector, useDispatch } from "react-redux";
+// import { useParams } from "react-router-dom";
+// import { locals } from "../reducers/locals";
 
 export const LocalCard = ({ loc }) => {
     
