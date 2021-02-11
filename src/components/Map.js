@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Leaflet from 'leaflet'
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from "react-leaflet";
+import { MAPBOX_URL } from "../urls";
 
 export const Map = ({ position }) => {
-    console.log(position);
+
     return (
-        <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+      <>
+      {position && 
+        <MapContainer center={position.coordinates} zoom={18} scrollWheelZoom={false}>
         <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors, Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox'
+          url={MAPBOX_URL}
         />
-        <Marker position={[51.505, -0.09]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+        <Marker position={position.coordinates}>
+          <Popup>HEJ TORSLANDA
           </Popup>
         </Marker>
-      </MapContainer>
+      </MapContainer>}
+      </>
     )
 }

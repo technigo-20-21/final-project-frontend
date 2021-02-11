@@ -4,7 +4,7 @@ import React from "react";
 // import { locals } from "../reducers/locals";
 
 export const LocalCard = ({ loc }) => {
-    
+
     return (
         <>
         <h1>{loc.name}</h1>

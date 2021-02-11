@@ -7,7 +7,8 @@ const initialState = {
     firstName: localStorage.firstName || null,
     lastName: localStorage.lastName || null,
     email: localStorage.email || null,
-    favourites: localStorage.favourites || [],
+    // favourites: localStorage.favourites || null,
+    favourites: null,
   },
   statusMessage: null,
 };
@@ -36,7 +37,7 @@ export const users = createSlice({
       localStorage.setItem("firstName", firstName);
       localStorage.setItem("lastName", lastName);
       localStorage.setItem("email", email);
-      localStorage.setItem("favourites", favourites);
+      // localStorage.setItem("favourites", favourites);
     },
     logOut: (state, action) => {
       state.user.id = null;
@@ -58,17 +59,19 @@ export const users = createSlice({
     },
     updateFavourites: (state, action) => {
       const id = action.payload;
-      var test = state.user.favourites.includes(id);
-      if (test) {
+      var isFavourite = state.user.favourites.includes(id);
+      if (isFavourite) {
+        console.log("YES, remove")
         const filteredList = state.user.favourites.filter(
           (item) => item !== id
         );
         state.user.favourites = filteredList;
-        localStorage.setItem("favourites", filteredList);
+        // localStorage.setItem("favourites", filteredList);
       } else {
+        console.log("NO, add")
         const favouritesArray = [...state.user.favourites, id];
         state.user.favourites = favouritesArray;
-        localStorage.setItem("favourites", favouritesArray);
+        // localStorage.setItem("favourites", favouritesArray);
       }
     },
     setStatusMessage: (state, action) => {

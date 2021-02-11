@@ -65,13 +65,16 @@ export const logInFetch = (user) => {
 };
 
 export const updateUserFetch = (user) => {
-  console.log("Tar emot: " + JSON.stringify(user))
+  console.log("Tar emot: " + JSON.stringify(user.favourites))
 
   return (dispatch) => {
     const handleUpdateSuccess = () => {
+      console.log("Fetch sucess!")
       dispatch(users.actions.updateUser(user));
+      dispatch(users.actions.updateFavourites(user.id));
     };
     const handleUpdateFailed = (updateError) => {
+      console.log("Fetch failed!")
       dispatch(users.actions.setStatusMessage({ statusMessage: updateError }));
     };
 
@@ -100,32 +103,3 @@ export const updateUserFetch = (user) => {
   };
 };
 
-// export const updateFavouritesFetch = (user) => {
-//   return (dispatch) => {
-//     const handleUpdateSuccess = () => {
-//       dispatch(users.actions.updateFavourites(user));
-//     };
-//     const handleUpdateFailed = (updateError) => {
-//       dispatch(users.actions.setStatusMessage({ statusMessage: updateError }));
-//     };
-
-//     fetch(`http://localhost:8080/${user.id}/user`, {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/JSON",
-//         Authorization: user.accessToken,
-//       },
-//       body: JSON.stringify({
-//         favourites: user.favourites,
-//       }),
-//     })
-//       .then((res) => {
-//         if (!res.ok) {
-//           throw "Could not update favourites";
-//         }
-//         return res.json();
-//       })
-//       .then((json) => handleUpdateSuccess(json))
-//       .catch((err) => handleUpdateFailed(err));
-//   };
-// };

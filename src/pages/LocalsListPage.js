@@ -24,14 +24,25 @@ export const LocalsListPage = () => {
   // };
 
   useEffect(() => {
+<<<<<<< HEAD
     dispatch(fetchLocalsList(category)).then((result) => {
       const localsList = result.payload;
       // handleFetchSuccess(result);
       setLoc(localsList);
       dispatch(locals.actions.getLocals(localsList));
     });
+=======
+      dispatch(fetchLocalsList(category))
+        .then(result => {
+          const localsList = result.payload
+  	      console.log(localsList)
+          setLoc(localsList);
+          dispatch(locals.actions.getLocals(localsList));
+        })
+>>>>>>> 41e4215c09d6b81f8fb3230510394f4c7f62f65d
   }, [dispatch, category]);
 
+  console.log(category)
   return (
     <Container>
       {loc && loc.map((local) => <LocalsListThumb key={local.id} {...local} />)}

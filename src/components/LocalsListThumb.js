@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { Link } from "react-router-dom";
 
-// import { users } from "../reducers/users";
-import { updateUserFetch } from "../reducers/userFetch";
+import { users } from "../reducers/users";
+// import { updateUserFetch } from "../reducers/userFetch";
 
 import {
   CardContainer,
@@ -11,33 +11,49 @@ import {
   ThumbImage,
   ThumbText,
   Container,
-  ThumbIcon,
+  // ThumbIcon,
   FavouriteHeart,
 } from "../library/ThumbStyles";
 
 export const LocalsListThumb = ({ _id, tagline, img_url }) => {
   const dispatch = useDispatch();
-  const [user, setUser] = useState(useSelector((store) => store.users.user));
+  const [favourites, setFavourites] = useState(
+    useSelector((store) => store.users.user.favourites)
+  );
+  // const storedFavourites = useSelector((store) => store.users.user.favourites);
 
-  console.log("user.favourites: " + user.favourites);
+  const user = useSelector((store) => store.users.user);
 
   useEffect(() => {
-    console.log("Skickar: " + JSON.stringify(user))
-    dispatch(updateUserFetch(user));
-  }, [user])
+    // setFavourites(storedFavourites);
+    fetch(`http://localhost:8080/${user.id}/favourites`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/JSON",
+        Authorization: user.accessToken,
+      }
+    })
+      .then((res) => res.json)
+      .then((json) => console.log(json));
+  }, []);
+
+  // const favs = useSelector((store) => store.users.user.favourites)
+  // const formattedFavourites = favs.split(', ')
+  console.log(favourites);
+
+  console.log("first fav:" + favourites);
+  console.log(typeof favourites);
 
   const handleOnClick = () => {
-    const isFavourite = user.favourites.includes(_id);
-    console.log({isFavourite})
-    if (isFavourite) {
-      const favouritesList = [user.favourites]
-      console.log({favouritesList}, typeof(favourites))
-      const removeFromList = favouritesList.filter((item) => item !== _id);
-      setUser({ ...user, favourites: removeFromList });
+    if (favourites.includes(_id)) {
+      console.log("YES");
+      const removeFromList = favourites.filter((item) => item !== _id);
+      console.log({ removeFromList });
     } else {
-      const addToList = [...user.favourites, _id]
-      setUser({ ...user, favourites: addToList });
-    }        
+      console.log("NO");
+      setFavourites(...favourites, _id);
+      console.log("new fav:" + favourites);
+    }
   };
 
   return (
@@ -50,11 +66,13 @@ export const LocalsListThumb = ({ _id, tagline, img_url }) => {
         <ThumbText>{tagline}</ThumbText>
         <FavouriteHeart
           src={
-            user.favourites.includes(_id)
+            favourites.includes(_id)
               ? "../img/heart.png"
               : "../img/heart-empty.png"
+            // "../img/heart.png"
           }
           onClick={handleOnClick}
+          // onChange={(event) => setFavourites({ ...favourites, favourites: event.target.value})}
         ></FavouriteHeart>
       </Container>
     </CardContainer>
