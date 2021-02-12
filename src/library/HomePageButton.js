@@ -3,10 +3,10 @@ import styled from "styled-components";
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 
 const CustomLinkIconContainer = styled.div`
-padding: 12px;
+padding: 6px;
 & :hover {
   transform: scaleX(1.2) scaleY(1.2);
-  background-color: #2ecaa3;
+  background-color: #175BDA;
   transition: .3s ease-in-out;
 }
 `;
@@ -15,7 +15,7 @@ const CustomLinkIcon = styled.button`
   width: 75px;
   height: 75px;
   background-color: #DEAE15;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4), 0 0 11px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1), 0 0 11px rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   border: none;
   cursor: pointer;
