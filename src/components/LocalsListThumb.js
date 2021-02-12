@@ -11,11 +11,11 @@ import {
   ThumbImage,
   ThumbText,
   Container,
-  ThumbIcon,
-  FavouriteHeartButton
+  FavouriteHeartButton,
+  MainContainer
 } from "../library/ThumbStyles";
-import { FavouriteOutlinedButton } from "../library/FavoriteOutlinedButton"
-import { FavoriteFilledButton } from "../library/FavouriteFilledButton"
+import { FavouriteOutlinedButton } from "../library/FavoriteOutlinedButton";
+import { FavoriteFilledButton } from "../library/FavouriteFilledButton";
 export const LocalsListThumb = ({ _id, tagline, img_url }) => {
   const dispatch = useDispatch();
   const userFav = useSelector(store => store.users.favourites)
@@ -29,34 +29,32 @@ export const LocalsListThumb = ({ _id, tagline, img_url }) => {
   //   //   setIsFavourite(true)
   // }, []);
 
-  
-
   const handleOnClick = () => {
-    dispatch(users.actions.updateFavourites(_id))
+    dispatch(users.actions.updateFavourites(_id));
     if (favouritesArray.includes(_id)) {
-      setIsFavourite()    
-      
+      setIsFavourite();
     } else {
-     
     }
   };
 
   return (
-    <LocalLink to={`/local/${_id}`}>
-      <ThumbImage url={img_url}>
+    <MainContainer>
+      <CardContainer>
+        <LocalLink to={`/local/${_id}`}>
+          <ThumbImage url={img_url} />
+        </LocalLink>
         <Container>
           <ThumbText>{tagline}</ThumbText>
-          <ThumbIcon className="fas fa-chevron-circle-left"></ThumbIcon>
+          {/* <ThumbIcon className="fas fa-chevron-circle-left"></ThumbIcon> */}
           <FavouriteHeartButton onClick={handleOnClick}>
-            
-            {isFavourite
-              ? <FavoriteFilledButton /> 
-              : <FavouriteOutlinedButton />
-            }
-            
+            {isFavourite ? (
+              <FavoriteFilledButton />
+            ) : (
+              <FavouriteOutlinedButton />
+            )}
           </FavouriteHeartButton>
         </Container>
-      </ThumbImage>
-    </LocalLink>
+      </CardContainer>
+    </MainContainer>
   );
 };
