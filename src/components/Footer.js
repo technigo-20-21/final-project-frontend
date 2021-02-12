@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 export const Footer = () => {
   return (
     <FooterContainer>
-      <Editor>Hälsningar Evelina &amp; Tobias</Editor>
+      <Editor>Hälsningar Evelina &amp; Petra</Editor>
       <LinkContainer>
         <p>Bulleriberg 2021 | </p>
         <Contact href="https://www.torslandalocals.se/contact">

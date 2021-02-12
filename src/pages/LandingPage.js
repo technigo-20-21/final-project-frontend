@@ -8,7 +8,7 @@ import { Container, CategoriesContainer } from "../library/LandingPageStyles"
 export const LandingPage = () => {
   const [categories, setCategories] = useState();
   const [fetchStatus, setFetchStatus] = useState({});
-
+  
   const { name } = useParams();
 
   const fetchCategoriesContent = () => {

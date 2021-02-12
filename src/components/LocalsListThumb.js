@@ -1,7 +1,12 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+// import { Link } from "react-router-dom";
+
+import { users } from "../reducers/users";
+// import { updateUserFetch } from "../reducers/userFetch";
 
 import {
+  CardContainer,
   LocalLink,
   ThumbImage,
   ThumbText,
@@ -12,10 +17,29 @@ import {
 import { FavouriteOutlinedButton } from "../library/FavoriteOutlinedButton"
 import { FavoriteFilledButton } from "../library/FavouriteFilledButton"
 export const LocalsListThumb = ({ _id, tagline, img_url }) => {
-  const [liked, setLiked] = useState(false);
+  const dispatch = useDispatch();
+  const [user, setUser] = useState(useSelector((store) => store.users.user));
+  const [favourites, setFavourites] = useState(
+    useSelector((store) => store.users.favourites)
+  );
+  const [isFavourite, setIsFavourite] = useState(false);
+
+  const favouritesArray = JSON.parse(favourites);
+
+  useEffect(() => {
+    //   setIsFavourite(true)
+  }, []);
+
+  
 
   const handleOnClick = () => {
-    setLiked(!liked);
+    dispatch(users.actions.updateFavourites(_id))
+    if (favouritesArray.includes(_id)) {
+      setIsFavourite()    
+      
+    } else {
+     
+    }
   };
 
   return (

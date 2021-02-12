@@ -28,9 +28,13 @@ export const SignUp = () => {
     event.preventDefault();
     if (user.firstName.length < 2) {
       setUserMessage("Förnamn måste vara minst två tecken långt.");
+    } else if (user.firstName.length > 20) {
+      setUserMessage("Förnamn kan vara max 20 tecken långt.");
     } else if (user.lastName.length < 2) {
       setUserMessage("Efternamn måste vara minst två tecken långt.");
-    } else if (user.password.length < 6) {
+    } else if (user.lastName.length > 20) {
+      setUserMessage("Efternamn kan vara max 20 tecken långt.");
+    }else if (user.password.length < 6) {
       setUserMessage("Lösenord måste vara minst sex tecken långt.");
     } else {
       dispatch(signUpFetch(user));

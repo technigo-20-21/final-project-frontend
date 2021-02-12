@@ -7,8 +7,8 @@ const initialState = {
     firstName: localStorage.firstName || null,
     lastName: localStorage.lastName || null,
     email: localStorage.email || null,
-    favourites: localStorage.email || null,
   },
+  favourites: localStorage.favourites || null,
   statusMessage: null,
 };
 
@@ -17,19 +17,26 @@ export const users = createSlice({
   initialState,
   reducers: {
     logIn: (state, action) => {
-      const { id, accessToken, firstName, lastName, email, favourites } = action.payload;
+      const {
+        id,
+        accessToken,
+        firstName,
+        lastName,
+        email,
+        favourites,
+      } = action.payload;
       state.user.id = id;
       state.user.accessToken = accessToken;
       state.user.firstName = firstName;
       state.user.lastName = lastName;
       state.user.email = email;
-      state.user.favourites = favourites;
+      state.favourites = favourites;
       localStorage.setItem("id", id);
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("firstName", firstName);
       localStorage.setItem("lastName", lastName);
       localStorage.setItem("email", email);
-      localStorage.setItem("favourites", favourites);
+      localStorage.setItem("favourites", JSON.stringify(favourites));
     },
     logOut: (state, action) => {
       state.user.id = null;
@@ -37,9 +44,10 @@ export const users = createSlice({
       state.user.firstName = null;
       state.user.lastName = null;
       state.user.email = null;
+      state.favourites = null;
       localStorage.clear();
     },
-    update: (state, action) => {
+    updateUser: (state, action) => {
       const { firstName, lastName, email } = action.payload;
       state.user.firstName = firstName;
       state.user.lastName = lastName;
@@ -47,6 +55,23 @@ export const users = createSlice({
       localStorage.setItem("firstName", firstName);
       localStorage.setItem("lastName", lastName);
       localStorage.setItem("email", email);
+    },
+    updateFavourites: (state, action) => {
+      const id = action.payload;
+      const favouritesArray = JSON.parse(state.favourites)
+      const isFavourite = state.favourites.includes(id);
+
+      if (isFavourite) {
+        const removeFavourite = favouritesArray.filter(
+          (item) => item !== id
+        );
+        state.favourites = removeFavourite;
+        localStorage.setItem("favourites", JSON.stringify(removeFavourite));
+      } else {
+        const addFavourite = [...favouritesArray, id];
+        state.favourites = addFavourite;
+        localStorage.setItem("favourites", JSON.stringify(addFavourite));
+      }
     },
     setStatusMessage: (state, action) => {
       state.statusMessage = action.payload.statusMessage;

@@ -27,7 +27,7 @@ export const signUpFetch = (user) => {
     })
       .then((res) => {
         if (!res.ok) {
-          throw "Signup failed";
+          throw new Error("Signup failed");
         }
         return res.json();
       })
@@ -55,7 +55,9 @@ export const logInFetch = (user) => {
     })
       .then((res) => {
         if (!res.ok) {
-          throw "Kunde inte logga in, kontrollera dina användaruppgifter.";
+          throw new Error(
+            "Kunde inte logga in, kontrollera dina användaruppgifter."
+          );
         }
         return res.json();
       })
@@ -65,11 +67,16 @@ export const logInFetch = (user) => {
 };
 
 export const updateUserFetch = (user) => {
+  console.log("Tar emot: " + JSON.stringify(user.favourites));
+
   return (dispatch) => {
     const handleUpdateSuccess = () => {
-      dispatch(users.actions.update(user));
+      console.log("Fetch sucess!");
+      dispatch(users.actions.updateUser(user));
+      dispatch(users.actions.updateFavourites(user.id));
     };
     const handleUpdateFailed = (updateError) => {
+      console.log("Fetch failed!");
       dispatch(users.actions.setStatusMessage({ statusMessage: updateError }));
     };
 
@@ -83,12 +90,13 @@ export const updateUserFetch = (user) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        favourites: user.favourites,
         // password: user.password,
       }),
     })
       .then((res) => {
         if (!res.ok) {
-          throw "Could not update user";
+          throw new Error("Could not update user");
         }
         return res.json();
       })

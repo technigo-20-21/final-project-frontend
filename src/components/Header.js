@@ -57,7 +57,7 @@ const LogInButton = styled.button`
   font-size: 16px;
   color: #29354b;
   outline: none;
-
+  
   &:hover {
     background: #29354b;
     color: #fff;

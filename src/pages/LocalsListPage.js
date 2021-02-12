@@ -9,11 +9,11 @@ import { Container } from "../library/LandingPageStyles";
 
 export const LocalsListPage = () => {
   const dispatch = useDispatch();
-  const { category } = useParams(); 
-  const fetchStatus = useSelector(state => state.locals.status);
-  const error = useSelector(state => state.locals.error)
+  const { category } = useParams();
+  const fetchStatus = useSelector((state) => state.locals.status);
+  const error = useSelector((state) => state.locals.error);
   const [loc, setLoc] = useState([{}]);
-  
+
   useEffect(() => {
       dispatch(fetchLocalsList(category))
         .then(result => {
@@ -27,9 +27,7 @@ export const LocalsListPage = () => {
   console.log(category)
   return (
     <Container>
-      {loc && loc.map(local => (
-        <LocalsListThumb key={local.id} {...local} />
-      ))}
+      {loc && loc.map((local) => <LocalsListThumb key={local.id} {...local} />)}
     </Container>
   );
 };
