@@ -13,6 +13,7 @@ export const CategoryLink = styled(Link)`
 
 export const MainContainer = styled.div`
   display: flex;
+  
 `;
 
 export const CardContainer = styled.div`
@@ -20,8 +21,8 @@ export const CardContainer = styled.div`
   padding: 20px;
   width: 320px;
   background-color: #fdf6e9;
-  border-radius: 20px;
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  border-bottom-left-radius: 25px;
+  box-shadow: 
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
@@ -40,6 +41,7 @@ export const ThumbImage = styled.div`
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
+  border: solid 1px #5D5649;
   font-size: 36px;
   display: flex;
   flex-direction: column;

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { locals } from "../reducers/locals";
 import { fetchLocalsList } from "../reducers/localsFetch";
 import { LocalsListThumb } from "../components/LocalsListThumb";
-import { Container } from "../library/LandingPageStyles";
+import { LocalsContainer } from "../library/LocalListPageStyles";
 
 export const LocalsListPage = () => {
   const dispatch = useDispatch();
@@ -26,8 +26,8 @@ export const LocalsListPage = () => {
 
   console.log(category)
   return (
-    <Container>
+    <LocalsContainer>
       {loc && loc.map((local) => <LocalsListThumb key={local.id} {...local} />)}
-    </Container>
+    </LocalsContainer>
   );
 };
