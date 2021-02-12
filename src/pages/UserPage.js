@@ -21,7 +21,7 @@ export const UserPage = () => {
         <FrameContainer>
           <MainContainer>
             <UserDetails />
-            <Favourites />
+            <Favourites user={user} />
           </MainContainer>
         </FrameContainer>
       </OuterContainer>

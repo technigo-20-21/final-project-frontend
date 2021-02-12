@@ -63,12 +63,6 @@ const LogInButton = styled.button`
   }
 `;
 
-const FoldOutLogin = styled.div`
-  height: 50px;
-  width: 50px;
-  background: green;
-`;
-
 const UserIcon = styled.img`
   height: 30px;
   width: 30px;

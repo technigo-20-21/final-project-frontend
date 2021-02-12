@@ -7,9 +7,8 @@ const initialState = {
     firstName: localStorage.firstName || null,
     lastName: localStorage.lastName || null,
     email: localStorage.email || null,
-    // favourites: localStorage.favourites || null,
-    favourites: null,
   },
+  favourites: localStorage.favourites || null,
   statusMessage: null,
 };
 
@@ -31,13 +30,13 @@ export const users = createSlice({
       state.user.firstName = firstName;
       state.user.lastName = lastName;
       state.user.email = email;
-      state.user.favourites = favourites;
+      state.favourites = favourites;
       localStorage.setItem("id", id);
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("firstName", firstName);
       localStorage.setItem("lastName", lastName);
       localStorage.setItem("email", email);
-      // localStorage.setItem("favourites", favourites);
+      localStorage.setItem("favourites", JSON.stringify(favourites));
     },
     logOut: (state, action) => {
       state.user.id = null;
@@ -45,7 +44,7 @@ export const users = createSlice({
       state.user.firstName = null;
       state.user.lastName = null;
       state.user.email = null;
-      state.user.favourites = null;
+      state.favourites = null;
       localStorage.clear();
     },
     updateUser: (state, action) => {
@@ -59,19 +58,19 @@ export const users = createSlice({
     },
     updateFavourites: (state, action) => {
       const id = action.payload;
-      var isFavourite = state.user.favourites.includes(id);
+      const favouritesArray = JSON.parse(state.favourites)
+      const isFavourite = state.favourites.includes(id);
+
       if (isFavourite) {
-        console.log("YES, remove")
-        const filteredList = state.user.favourites.filter(
+        const removeFavourite = favouritesArray.filter(
           (item) => item !== id
         );
-        state.user.favourites = filteredList;
-        // localStorage.setItem("favourites", filteredList);
+        state.favourites = removeFavourite;
+        localStorage.setItem("favourites", JSON.stringify(removeFavourite));
       } else {
-        console.log("NO, add")
-        const favouritesArray = [...state.user.favourites, id];
-        state.user.favourites = favouritesArray;
-        // localStorage.setItem("favourites", favouritesArray);
+        const addFavourite = [...favouritesArray, id];
+        state.favourites = addFavourite;
+        localStorage.setItem("favourites", JSON.stringify(addFavourite));
       }
     },
     setStatusMessage: (state, action) => {

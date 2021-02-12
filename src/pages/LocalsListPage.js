@@ -24,14 +24,6 @@ export const LocalsListPage = () => {
   // };
 
   useEffect(() => {
-<<<<<<< HEAD
-    dispatch(fetchLocalsList(category)).then((result) => {
-      const localsList = result.payload;
-      // handleFetchSuccess(result);
-      setLoc(localsList);
-      dispatch(locals.actions.getLocals(localsList));
-    });
-=======
       dispatch(fetchLocalsList(category))
         .then(result => {
           const localsList = result.payload
@@ -39,7 +31,6 @@ export const LocalsListPage = () => {
           setLoc(localsList);
           dispatch(locals.actions.getLocals(localsList));
         })
->>>>>>> 41e4215c09d6b81f8fb3230510394f4c7f62f65d
   }, [dispatch, category]);
 
   console.log(category)

@@ -9,14 +9,14 @@ import { Container, CategoriesContainer } from "../library/LandingPageStyles"
 export const LandingPage = () => {
   const [categories, setCategories] = useState();
   const [fetchStatus, setFetchStatus] = useState({});
-
+  
   const { name } = useParams();
 
   const fetchCategoriesContent = () => {
     fetch(CATEGORIES_URL)
       .then(res => {
         if (!res.ok) {
-          throw "No categories to display";
+          throw new Error ("No categories to display");
         }
       return res.json();
       })

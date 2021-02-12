@@ -18,26 +18,32 @@ import {
 export const LocalsListThumb = ({ _id, tagline, img_url }) => {
   const dispatch = useDispatch();
   const [user, setUser] = useState(useSelector((store) => store.users.user));
-  const [favourites, setFavourites] = useState(
-    useSelector((store) => store.users.favourites)
-  );
-  const [isFavourite, setIsFavourite] = useState(false);
+  console.log({user})
+  console.log("USER-f: " + user.favourites)
 
-  const favouritesArray = JSON.parse(favourites);
+  console.log("User id: " + user.id);
 
   useEffect(() => {
-    //   setIsFavourite(true)
-  }, []);
-
-  
+    console.log("Skickar: " + user.favourites);
+    // dispatch(updateUserFetch(user));
+    // dispatch(users.actions.updateFavourites(user.id));
+  }, [dispatch, user]);
 
   const handleOnClick = () => {
-    dispatch(users.actions.updateFavourites(_id))
-    if (favouritesArray.includes(_id)) {
-      setIsFavourite()    
-      
+    const isFavourite = user.favourites.includes(_id);
+    console.log({ isFavourite });
+    if (isFavourite) {
+      console.log("Favourite finns, ta bort.");
+      const favouritesList = user.favourites;
+      console.log({favouritesList})
+      const removeFromList = favouritesList.filter((item) => item !== _id);
+      setUser({ ...user, favourites: removeFromList });
     } else {
-     
+      console.log("Favourite finns inte, lägg till.");
+      console.log("user.favourites: " + JSON.stringify(user.favourites));
+      const addToList = [...user.favourites, _id];
+      console.log("addtoList: " + addToList);
+      setUser({ ...user, favourites: addToList });
     }
   };
 
@@ -50,12 +56,11 @@ export const LocalsListThumb = ({ _id, tagline, img_url }) => {
       <Container>
         <ThumbText>{tagline}</ThumbText>
         <FavouriteHeart
-        value={isFavourite}
           src={
-            // favourites.includes(_id)
-            isFavourite
-              ? "../img/heart.png"
-              : "../img/heart-empty.png"
+            // user.favourites.includes(_id)
+            //   ? "../img/heart.png"
+            //   : "../img/heart-empty.png"
+            "../img/heart.png"
           }
           onClick={handleOnClick}
         ></FavouriteHeart>
