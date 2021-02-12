@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import Leaflet from 'leaflet'
-import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from "react-leaflet";
+import React from 'react';
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { MAPBOX_URL } from "../urls";
 import { StyledPop } from "../library/MapStyles"
 export const Map = ({ position, street, zip }) => {

@@ -13,7 +13,6 @@ export const CategoryLink = styled(Link)`
 
 export const MainContainer = styled.div`
   display: flex;
-  
 `;
 
 export const CardContainer = styled.div`

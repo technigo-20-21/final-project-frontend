@@ -1,12 +1,9 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { locals } from "../reducers/locals";
 import { CardWrapper, CardHeader, AddressStyle, AddressText } from "../library/LocalCardStyles"
 import  { CallButton } from "../library/CallButton"
 import { EmailButton } from "../library/EmailButton"
 import { HomePageButton } from "../library/HomePageButton"
-export const LocalCard = ({ name, street_address, zip_code, phone_number, email, menu, web_shop, booking, url }) => {
+export const LocalCard = ({ name, phone_number, email, menu, web_shop, booking, url }) => {
 
     return (
         <CardWrapper>
