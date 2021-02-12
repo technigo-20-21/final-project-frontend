@@ -7,9 +7,10 @@ import {
   ThumbText,
   Container,
   ThumbIcon,
-  FavouriteHeart,
+  FavouriteHeartButton
 } from "../library/ThumbStyles";
-
+import { FavouriteOutlinedButton } from "../library/FavoriteOutlinedButton"
+import { FavoriteFilledButton } from "../library/FavouriteFilledButton"
 export const LocalsListThumb = ({ _id, tagline, img_url }) => {
   const [liked, setLiked] = useState(false);
 
@@ -23,10 +24,14 @@ export const LocalsListThumb = ({ _id, tagline, img_url }) => {
         <Container>
           <ThumbText>{tagline}</ThumbText>
           <ThumbIcon className="fas fa-chevron-circle-left"></ThumbIcon>
-          <FavouriteHeart
-            src={liked ? "../img/heart.png" : "../img/heart-empty.png"}
-            onClick={handleOnClick}
-          ></FavouriteHeart>
+          <FavouriteHeartButton onClick={handleOnClick}>
+            
+            {liked 
+              ? <FavoriteFilledButton /> 
+              : <FavouriteOutlinedButton />
+            }
+            
+          </FavouriteHeartButton>
         </Container>
       </ThumbImage>
     </LocalLink>

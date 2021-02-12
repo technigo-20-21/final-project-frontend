@@ -2,16 +2,24 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { locals } from "../reducers/locals";
-
-export const LocalCard = ({ loc }) => {
+import { CardWrapper, CardHeader, AddressStyle, AddressText } from "../library/LocalCardStyles"
+import  { CallButton } from "../library/CallButton"
+import { EmailButton } from "../library/EmailButton"
+import { HomePageButton } from "../library/HomePageButton"
+export const LocalCard = ({ name, street_address, zip_code, phone_number, email, menu, web_shop, booking, url }) => {
 
     return (
-        <>
-        <h1>{loc.name}</h1>
-        <p>{loc.street_address}, {loc.zip_code}</p>
-        <p>{loc.phone_number} {loc.email}</p>
-        <p>{loc.menu} {loc.web_shop} {loc.booking}</p>
-        <p>{loc.url}</p>
-        </>
+        <CardWrapper>
+            <CardHeader>Välkommen till {name}</CardHeader>
+            <AddressStyle>
+                <AddressText>Öppettider</AddressText>
+                <AddressText>Mån - fre:    11 - 17</AddressText>
+                <AddressText>Lör - sön:    10 - 14</AddressText>
+            </AddressStyle>
+            <CallButton phone_number={phone_number} />
+            <EmailButton email={email} />
+            <p>{menu} {web_shop} {booking}</p>
+            <HomePageButton url={url} />
+        </CardWrapper>
     )
 }

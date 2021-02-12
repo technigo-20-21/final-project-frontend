@@ -5,6 +5,7 @@ export const fetchLocalsList = createAsyncThunk(
   "locals/fetchLocalsList",
   async (localCategory) => {
     try {
+      console.log(localCategory)
       const url = `${LOCALS_URL}/${localCategory}`;
       const response = await fetch(url);
       return await response.json();

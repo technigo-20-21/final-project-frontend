@@ -14,15 +14,6 @@ export const LocalsListPage = () => {
   const error = useSelector(state => state.locals.error)
   const [loc, setLoc] = useState([{}]);
   
-  // const handleFetchSuccess = (fetchedLocals) => {
-  //  const localsList = fetchedLocals.payload;
-    // const newLocal = localsList.map((local) => ({
-    //   name: local.name,
-    //   id: local._id,
-    //   category: local.category,
-    // }));
- // };
-
   useEffect(() => {
       dispatch(fetchLocalsList(category))
         .then(result => {

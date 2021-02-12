@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components/macro";
+import { UserIcon } from "../library/UserIcon"
 
 export const Header = () => {
   const accessToken = useSelector((store) => store.users.user.accessToken);
@@ -16,7 +17,7 @@ export const Header = () => {
         )}
         {accessToken && (
           <Link to="/userpage">
-            <UserIcon src="../img/user-icon.png"></UserIcon>
+            <UserIcon />
           </Link>
         )}
       </TopRow>
@@ -39,8 +40,8 @@ export const Header = () => {
 };
 
 const TopRow = styled.section`
-  background: lightgray;
-  padding: 10px;
+  background: #E8ECF3;
+  padding: 6px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -69,10 +70,7 @@ const FoldOutLogin = styled.div`
   background: green;
 `;
 
-const UserIcon = styled.img`
-  height: 30px;
-  width: 30px;
-`;
+
 
 const MainRow = styled.section`
   background: #29354b;

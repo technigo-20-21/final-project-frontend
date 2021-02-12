@@ -18,7 +18,9 @@ code {
 }
 
 .leaflet-container {
-  height: 800px;
+  height: 550px;
+  width: 75%;
+  border-radius: 25px;
 }
 
 a.active {

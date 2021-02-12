@@ -59,8 +59,11 @@ export const ThumbText = styled.p`
 
 export const ThumbIcon = styled.span``;
 
-export const FavouriteHeart = styled.img`
-  align-self: flex-end;
-  cursor: pointer;
-  transition: all 3000ms ease-in-out;
-`;
+export const FavouriteHeartButton = styled.div`
+align-self: flex-end;
+cursor: pointer;
+`
+
+
+
+

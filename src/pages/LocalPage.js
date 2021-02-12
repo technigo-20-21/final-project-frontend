@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { locals } from "../reducers/locals";
 import { fetchLocal } from "../reducers/localsFetch";
 import { LocalCard } from "../components/LocalCard";
-import { Container } from "../library/LandingPageStyles";
+import { SectionContainer, SectionHeader } from "../library/LocalPageStyles";
 import { Map } from "../components/Map";
 
 export const LocalPage = () => {
@@ -30,13 +29,14 @@ export const LocalPage = () => {
   }, [dispatch, id]);
 
   return (
-    <Container>
+    <SectionContainer>
       {loc && (
         <>
-          <Map position={loc.geolocation} />
-          <LocalCard key={loc.id} loc={loc} />
+          <SectionHeader>{loc.name}</SectionHeader>
+          <LocalCard key={loc.id} {...loc} />
+          <Map position={loc.geolocation} street={loc.street_address} zip={loc.zip_code} />
           </>
       )}
-        </Container>
+        </SectionContainer>
   );
 };

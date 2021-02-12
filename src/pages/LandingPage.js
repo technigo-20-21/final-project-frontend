@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { CATEGORIES_URL } from "../urls"
@@ -16,7 +15,7 @@ export const LandingPage = () => {
     fetch(CATEGORIES_URL)
       .then(res => {
         if (!res.ok) {
-          throw "No categories to display";
+          throw new Error("No categories to display");
         }
       return res.json();
       })
