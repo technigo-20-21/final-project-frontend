@@ -18,17 +18,16 @@ import { FavouriteOutlinedButton } from "../library/FavoriteOutlinedButton"
 import { FavoriteFilledButton } from "../library/FavouriteFilledButton"
 export const LocalsListThumb = ({ _id, tagline, img_url }) => {
   const dispatch = useDispatch();
-  const [user, setUser] = useState(useSelector((store) => store.users.user));
-  const [favourites, setFavourites] = useState(
-    useSelector((store) => store.users.favourites)
-  );
+  const userFav = useSelector(store => store.users.favourites)
+  // const [user, setUser] = useState(useSelector((store) => store.users.user));
+  const [favourites, setFavourites] = useState(userFav ? userFav : []);
   const [isFavourite, setIsFavourite] = useState(false);
-
-  const favouritesArray = JSON.parse(favourites);
-
-  useEffect(() => {
-    //   setIsFavourite(true)
-  }, []);
+  console.log(favourites);
+  const favouritesArray = userFav ? JSON.parse(favourites) : [];
+    // Does nothing
+  // useEffect(() => {
+  //   //   setIsFavourite(true)
+  // }, []);
 
   
 
@@ -50,7 +49,7 @@ export const LocalsListThumb = ({ _id, tagline, img_url }) => {
           <ThumbIcon className="fas fa-chevron-circle-left"></ThumbIcon>
           <FavouriteHeartButton onClick={handleOnClick}>
             
-            {liked 
+            {isFavourite
               ? <FavoriteFilledButton /> 
               : <FavouriteOutlinedButton />
             }

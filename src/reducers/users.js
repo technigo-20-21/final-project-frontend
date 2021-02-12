@@ -8,7 +8,7 @@ const initialState = {
     lastName: localStorage.lastName || null,
     email: localStorage.email || null,
   },
-  favourites: localStorage.favourites || null,
+  favourites: localStorage.favourites || [],
   statusMessage: null,
 };
 
@@ -31,6 +31,7 @@ export const users = createSlice({
       state.user.lastName = lastName;
       state.user.email = email;
       state.favourites = favourites;
+      console.log(state.favourites);
       localStorage.setItem("id", id);
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("firstName", firstName);

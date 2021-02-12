@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 
 export const CardWrapper = styled.div`
-    max-height: 400px;
+    max-height: 450px;
     width: 25%;
     position: absolute;
-    top: 35%;
+    top: 36%;
     left: 40px;
     padding: 25px;
     display: flex;
@@ -27,6 +27,7 @@ export const CardWrapper = styled.div`
 
 export const CardHeader = styled.h2`
     width: 100%;
+    margin-top: 12px;
     font-size: 28px;
 `
 

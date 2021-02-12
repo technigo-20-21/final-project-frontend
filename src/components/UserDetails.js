@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components/macro";
 
 import { users } from "../reducers/users";
 import { updateUserFetch } from "../reducers/userFetch";
+import {
+  UserDetailsContainer,
+  LogInForm,
+  DetailsContainer,
+  LabelHeader,
+  UserInput,
+  UserButton,
+} from "../library/UserDetailsStyles";
 
 export const UserDetails = () => {
   const dispatch = useDispatch();
@@ -57,7 +64,7 @@ export const UserDetails = () => {
     <UserDetailsContainer>
       <h2>{editUser ? "Redigera profil" : "Min profil"}</h2>
       <LogInForm onSubmit={handleOnSave}>
-        <Container>
+        <DetailsContainer>
           <LabelHeader>E-post: </LabelHeader>
           {editUser ? (
             <label>
@@ -73,9 +80,9 @@ export const UserDetails = () => {
           ) : (
             user.email
           )}
-        </Container>
+        </DetailsContainer>
 
-        <Container>
+        <DetailsContainer>
           <LabelHeader>Förnamn: </LabelHeader>
           {editUser ? (
             <label>
@@ -94,9 +101,9 @@ export const UserDetails = () => {
           ) : (
             user.firstName
           )}
-        </Container>
+        </DetailsContainer>
 
-        <Container>
+        <DetailsContainer>
           <LabelHeader>Efternamn: </LabelHeader>
           {editUser ? (
             <label>
@@ -112,7 +119,7 @@ export const UserDetails = () => {
           ) : (
             user.lastName
           )}
-        </Container>
+        </DetailsContainer>
 
         {editUser ? (
           <>
@@ -133,62 +140,19 @@ export const UserDetails = () => {
               </label>
             </Container> */}
             {userMessage ? <p>{userMessage}</p> : null}
-            <Container>
-              <Button>Spara</Button>
-              <Button onClick={handleOnCancel}>Avbryt</Button>
-              <Button onClick={handleOnLogOut}>Logga ut</Button>
-            </Container>
+            <DetailsContainer>
+              <UserButton>Spara</UserButton>
+              <UserButton onClick={handleOnCancel}>Avbryt</UserButton>
+              <UserButton onClick={handleOnLogOut}>Logga ut</UserButton>
+            </DetailsContainer>
           </>
         ) : (
-          <Container>
-            <Button onClick={handleOnChange}>Redigera profil</Button>
-            <Button onClick={handleOnLogOut}>Logga ut</Button>
-          </Container>
+          <DetailsContainer>
+            <UserButton onClick={handleOnChange}>Redigera profil</UserButton>
+            <UserButton onClick={handleOnLogOut}>Logga ut</UserButton>
+          </DetailsContainer>
         )}
       </LogInForm>
     </UserDetailsContainer>
   );
 };
-
-const UserDetailsContainer = styled.div`
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const LogInForm = styled.form`
-  //   padding: 30px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const LabelHeader = styled.h3`
-  width: 120px;
-`;
-
-const UserInput = styled.input`
-  margin: 5px;
-  padding: 10px;
-  width: 250px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  color: #697181;
-`;
-
-const Button = styled.button`
-  cursor: pointer;
-  margin: 20px 20px 20px 0;
-  background: #29354b;
-  padding: 5px 35px 7px 35px;
-  border-radius: 25px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  color: #fff;
-  outline: none;
-`;
