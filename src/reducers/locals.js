@@ -10,21 +10,20 @@ export const locals = createSlice({
     name: "locals",
     initialState,
     reducers: {
-        getLocals: (state, action) => {
-            state.locals = action.payload;
-        },
-        
         errorMessageLocals: (state, action) => {
             state.status = 'failed'
             state.error = action.payload;
-            state.loading = false;
         },
+    },
         extraReducers: {
             [fetchLocalsList.pending]: (state, action) => {
                 state.status = 'loading'
+
             },
             [fetchLocalsList.fulfilled]: (state, action) => {
                 state.status = 'succeeded';
+                state.locals = state.locals.concat(action.payload);
+                console.log(state.locals)
             },
             [fetchLocalsList.rejected]: (state, action) => {
                 state.status = 'failed';
@@ -43,5 +42,5 @@ export const locals = createSlice({
 
         }
     }
-});
+);
 
