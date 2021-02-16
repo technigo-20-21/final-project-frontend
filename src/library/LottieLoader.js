@@ -1,6 +1,5 @@
 import React from 'react';
 import Lottie from 'react-lottie';
-import styled from "styled-components"
 import animationData from './lottie_config/LottieLoader.json';
 
 export const LottieLoader = () => {
@@ -18,7 +17,7 @@ export const LottieLoader = () => {
         <Lottie 
           options={defaultOptions}
           height={400}
-          width={'100'}
+          width={'100vw'}
         />
       </div>
     );

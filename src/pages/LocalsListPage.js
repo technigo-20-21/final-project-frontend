@@ -11,27 +11,32 @@ import { LottieLoader as Loader } from "../library/LottieLoader";
 export const LocalsListPage = () => {
   const dispatch = useDispatch();
   const { category } = useParams();
-  const fetchStatus = useSelector((state) => state.locals.status);
-  const error = useSelector((state) => state.locals.error);
-  const loc = useSelector((state) => state.locals);
+  const localsListStatus = useSelector((state) => state.locals.localsList.status);
+  const localsListError = useSelector((state) => state.locals.localsList.error);
+  const localsList = useSelector((state) => state.locals.localsList.locals);
+  
+  const [localList, setLocalList] = useState(localsList ? localsList : []);
 
   useEffect(() => {
-    if (fetchStatus === "idle") {
-      dispatch(fetchLocalsList(category));
+    if (localsListStatus === "idle") {
+      dispatch(fetchLocalsList(category)).then((result) => {
+        const newLocalsList = result.payload;
+        setLocalList(newLocalsList);
+      });
     }
-  }, [category, fetchStatus]);
+  }, [category, localsListStatus]);
 
   let content;
 
-  if (fetchStatus === "loading") {
+  if (localsListStatus === "loading") {
     content = <Loader />;
-  } else if (fetchStatus === "succeeded") {
-    const localsList = loc.locals;
-    content = localsList.map((local) => (
+  } else if (localsListStatus === "succeeded") {
+
+    content = localList.map((local) => (
       <LocalsListThumb key={local.id} {...local} />
     ));
-  } else if (fetchStatus === "failed") {
-    content = <div>{error}</div>;
+  } else if (localsListStatus === "failed") {
+    content = <div>{localsListError}</div>;
   }
 
   return <LocalsContainer>{content}</LocalsContainer>;
