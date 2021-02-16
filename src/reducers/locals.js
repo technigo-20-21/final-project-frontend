@@ -43,7 +43,7 @@ export const locals = createSlice({
     },
     [fetchLocal.rejected]: (state, action) => {
       state.singleLocal.status = "failed";
-      state.singleLocal.error = action.error.message;
+      state.singleLocal.error = action.error.status;
     },
   },
 });
