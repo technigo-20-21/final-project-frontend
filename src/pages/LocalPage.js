@@ -25,7 +25,7 @@ export const LocalPage = () => {
     (state) => state.locals.singleLocal.error
   );
 
-  const [loc, setLoc] = useState(existingLocal ? existingLocal : null);
+  const [loc, setLoc] = useState(existingLocal ? existingLocal : []);
 
   useEffect(() => {
     if (!existingLocal) {
