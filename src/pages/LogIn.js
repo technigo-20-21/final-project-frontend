@@ -18,7 +18,11 @@ export const LogIn = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(logInFetch(user));
+    try {
+      dispatch(logInFetch(user));
+    } catch (err) {
+      console.log(err);
+    }
     setUser({ email: "", password: "" });
   };
 
