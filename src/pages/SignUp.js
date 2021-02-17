@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
 import { useHistory } from "react-router-dom";
@@ -41,18 +41,12 @@ export const SignUp = () => {
       setUser({ firstName: "", lastName: "", email: "", password: "" });
       setUserMessage(null);
     }
-
-    if (statusMessage === "User account created") {
-      setAccountCreated(true);
-      // dispatch(users.actions.setStatusMessage({ statusMessage: "" }));
-    } else {
-      setUserMessage("Kontot kunde inte skapas.")
-      setAccountCreated(false);
-      // dispatch(users.actions.setStatusMessage({ statusMessage: "" }));
-    }
   };
 
-  
+  if (statusMessage === "User account created") {
+    setAccountCreated(true);
+    dispatch(users.actions.setStatusMessage({ statusMessage: "" }));
+  }
 
   return (
     <>

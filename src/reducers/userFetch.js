@@ -12,8 +12,7 @@ export const signUpFetch = (user) => {
       );
     };
     const handleSignUpFailed = (signUpError) => {
-      // dispatch(users.actions.setStatusMessage({ statusMessage: signUpError}));
-      dispatch(users.actions.setStatusMessage({ statusMessage: "Signup failed"}));
+      dispatch(users.actions.setStatusMessage({ statusMessage: signUpError }));
     };
 
     fetch(SIGNUP_URL, {
@@ -33,7 +32,7 @@ export const signUpFetch = (user) => {
         return res.json();
       })
       .then((json) => handleSignUpSuccess())
-      .catch((err) => handleSignUpFailed(err)); 
+      .catch((err) => handleSignUpFailed(err));
   };
 };
 

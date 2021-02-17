@@ -75,7 +75,7 @@ export const users = createSlice({
       }
     },
     setStatusMessage: (state, action) => {
-      state.statusMessage = action.payload;
+      state.statusMessage = action.payload.statusMessage;
     },
   },
 });
