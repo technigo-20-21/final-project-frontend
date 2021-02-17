@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 
-// Change color to white, media query doesn't work
-
 export const CategoryLink = styled(Link)`
   width: 100%;
   text-decoration: none;
@@ -31,14 +29,21 @@ export const LocalLink = styled(Link)`
   text-decoration: none;
 `;
 
-// Move up
+export const ThumbTextBox = styled.div`
+  width: 55%;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 15px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+`
 export const ThumbImage = styled.div`
   height: 300px;
   background-image: url("${(props) => props.url}");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
   border: solid 1px #5D5649;
   font-size: 36px;
@@ -50,22 +55,37 @@ export const ThumbImage = styled.div`
 
   &:hover {
     filter: opacity(1);
+    transition: .3s ease-in-out
+
+  }
+  &:hover ${ThumbTextBox} {
+    opacity: 0;
+    transition: .3s ease-in-out
   }
 `;
+
+export const ThumbText = styled.p`
+  width: 100%;
+  margin: 20px 12px 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+`;
+
+export const ThumbIcon = styled.span`
+margin-bottom: 20px;`;
+// Move up
 
 export const Container = styled.div`
   margin-top: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  &:hover {
+    opacity: 0;
+  }
 `;
 
-export const ThumbText = styled.p`
-  text-transform: uppercase;
-  font-weight: 700;
-`;
 
-export const ThumbIcon = styled.span``;
 
 export const FavouriteHeartButton = styled.div`
   align-self: flex-end;
