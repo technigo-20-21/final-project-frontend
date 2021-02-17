@@ -6,26 +6,38 @@ import { locals } from "../reducers/locals";
 import { fetchLocalsList } from "../reducers/localsFetch";
 import { LocalsListThumb } from "../components/LocalsListThumb";
 import { LocalsContainer } from "../library/LocalListPageStyles";
+import { LottieLoader as Loader } from "../library/LottieLoader";
 
 export const LocalsListPage = () => {
   const dispatch = useDispatch();
   const { category } = useParams();
-  const fetchStatus = useSelector((state) => state.locals.status);
-  const error = useSelector((state) => state.locals.error);
-  const [loc, setLoc] = useState([{}]);
+  const localsListStatus = useSelector((state) => state.locals.localsList.status);
+  const localsListError = useSelector((state) => state.locals.localsList.error);
+  const localsList = useSelector((state) => state.locals.localsList.locals);
+  
+  const [localList, setLocalList] = useState(localsList ? localsList : []);
 
   useEffect(() => {
-      dispatch(fetchLocalsList(category))
-        .then(result => {
-          const localsList = result.payload
-          setLoc(localsList);
-          dispatch(locals.actions.getLocals(localsList));
-        })
-  }, [dispatch, category]);
+    if (localsListStatus === "idle") {
+      dispatch(fetchLocalsList(category)).then((result) => {
+        const newLocalsList = result.payload;
+        setLocalList(newLocalsList);
+      });
+    }
+  }, [category, localsListStatus]);
 
-  return (
-    <LocalsContainer>
-      {loc && loc.map((local) => <LocalsListThumb key={local.id} {...local} />)}
-    </LocalsContainer>
-  );
+  let content;
+
+  if (localsListStatus === "loading") {
+    content = <Loader />;
+  } else if (localsListStatus === "succeeded") {
+
+    content = localList.map((local) => (
+      <LocalsListThumb key={local.id} {...local} />
+    ));
+  } else if (localsListStatus === "failed") {
+    content = <div>{localsListError}</div>;
+  }
+
+  return <LocalsContainer>{content}</LocalsContainer>;
 };
