@@ -4,7 +4,8 @@ import {
   CategoryLink,
   ThumbImage,
   ThumbText, 
-  ThumbIcon
+  ThumbIcon,
+  ThumbTextBox
 } from "../library/ThumbStyles";
 
 export const CategoryThumb = ({ name, display_name, img_url }) => {
@@ -12,8 +13,10 @@ export const CategoryThumb = ({ name, display_name, img_url }) => {
   return (
       <CategoryLink to={`/locals/${name}`} >
         <ThumbImage url={img_url}>
-          <ThumbText>{display_name}</ThumbText>
-          <ThumbIcon className="fas fa-chevron-circle-left"></ThumbIcon>
+          <ThumbTextBox>
+            <ThumbText>{display_name}</ThumbText>
+            <ThumbIcon className="fas fa-chevron-circle-left"></ThumbIcon>
+          </ThumbTextBox>
         </ThumbImage>
       </CategoryLink>
   );
