@@ -10,7 +10,7 @@ const CustomLinkIconContainer = styled.div`
   }
 `;
 
-export const FavoriteFilledButton = () => {
+export const FavouriteFilledButton = () => {
   return (
 
       <FavoriteIcon style={{ fontSize: 42, color: '#FF5733' }} />

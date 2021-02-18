@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+console.log(localStorage.favourites)
 const initialState = {
   user: {
     id: localStorage.id || null,
@@ -8,7 +8,7 @@ const initialState = {
     lastName: localStorage.lastName || null,
     email: localStorage.email || null,
   },
-  favourites: localStorage.favourites || [],
+  favourites: localStorage.favourites ? JSON.parse(localStorage.favourites) : [],
   statusMessage: null,
   errorMessage: null,
 };
@@ -61,19 +61,24 @@ export const users = createSlice({
       localStorage.setItem("email", email);
     },
     updateFavourites: (state, action) => {
+      console.log(action.payload)
       const id = action.payload;
-      const favouritesArray = JSON.parse(state.favourites)
+      console.log(state.favourites);
+
+      // const favouritesArray = state.favourites;
+      // console.log(favouritesArray);
       const isFavourite = state.favourites.includes(id);
 
       if (isFavourite) {
-        const removeFavourite = favouritesArray.filter(
+        const removeFavourite = state.favourites.filter(
           (item) => item !== id
         );
         state.favourites = removeFavourite;
         localStorage.setItem("favourites", JSON.stringify(removeFavourite));
       } else {
-        const addFavourite = [...favouritesArray, id];
+        const addFavourite = [...state.favourites, id];
         state.favourites = addFavourite;
+        console.log(addFavourite);
         localStorage.setItem("favourites", JSON.stringify(addFavourite));
       }
     },

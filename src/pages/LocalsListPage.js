@@ -18,13 +18,13 @@ export const LocalsListPage = () => {
   const [localList, setLocalList] = useState(localsList ? localsList : []);
 
   useEffect(() => {
-    if (localsListStatus === "idle") {
+    // if (localsListStatus === "idle") {
       dispatch(fetchLocalsList(category)).then((result) => {
         const newLocalsList = result.payload;
         setLocalList(newLocalsList);
       });
-    }
-  }, [category, localsListStatus]);
+    
+  }, [dispatch, category]);
 
   let content;
 

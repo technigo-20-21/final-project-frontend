@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 
 export const TopRow = styled.section`
-  background: #E8ECF3;
+  background: #E4E7EC;
   padding: 6px;
   display: flex;
   justify-content: flex-end;
@@ -64,17 +64,4 @@ export const Nav = styled.div`
   display: flex;
   justify-content: space-evenly;
   padding: 15px;
-`;
-
-export const LocalLink = styled(NavLink)`
-  margin-top: 5px;
-  padding: 5px 10px;
-  text-decoration: none;
-  color: #29354b;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
-
-  &:hover {
-    border-image: linear-gradient(to right, transparent, #999, transparent) 5;
-  }
 `;
