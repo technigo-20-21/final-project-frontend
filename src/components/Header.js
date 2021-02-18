@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink} from "react-router-dom";
+import styled from "styled-components"
 import { UserIcon } from "../library/UserIcon";
 import {
   TopRow,
@@ -9,8 +10,7 @@ import {
   Title,
   SubTitle,
   BottomRow,
-  Nav,
-  LocalLink,
+  Nav
 } from "../library/HeaderStyles";
 
 export const Header = () => {
@@ -47,3 +47,17 @@ export const Header = () => {
     </>
   );
 };
+
+
+export const LocalLink = styled(NavLink)`
+  margin-top: 5px;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #29354b;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+
+  &:hover {
+    border-image: linear-gradient(to right, transparent, #999, transparent) 5;
+  }
+  `;

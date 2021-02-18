@@ -44,6 +44,7 @@ export const ThumbImage = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: #fff;
   color: #fff;
   border: solid 1px #5D5649;
   font-size: 36px;
@@ -80,12 +81,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  &:hover {
-    opacity: 0;
-  }
 `;
-
-
 
 export const FavouriteHeartButton = styled.div`
   align-self: flex-end;
