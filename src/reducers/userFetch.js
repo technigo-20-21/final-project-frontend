@@ -83,7 +83,7 @@ export const updateUserFetch = (user) => {
     fetch(`http://localhost:8080/${user.id}/user`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/JSON",
+        "Content-Type": "application/json",
         Authorization: user.accessToken,
       },
       body: JSON.stringify({
