@@ -7,7 +7,7 @@ import { logInFetch } from "../reducers/userFetch";
 
 export const LogIn = () => {
   const accessToken = useSelector((store) => store.users.user.accessToken);
-  const statusMessage = useSelector((store) => store.users.statusMessage);
+  const errorMessage = useSelector((store) => store.users.errorMessage);
   const [user, setUser] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
   const history = useHistory();
@@ -45,7 +45,7 @@ export const LogIn = () => {
           }
         ></UserInput>
       </label>
-      {statusMessage ? <p>{statusMessage}</p> : null}
+      {errorMessage && <p>Error message: {errorMessage}</p>}
       <Button type="submit">Log in</Button>
       <SignUp>
         Saknar du ett konto?{" "}

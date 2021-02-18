@@ -38,13 +38,6 @@ export const signUpFetch = (user) => {
 
 export const logInFetch = (user) => {
   return (dispatch) => {
-    const handleLogInSuccess = (logInResponse) => {
-      dispatch(users.actions.logIn(logInResponse));
-    };
-    const handleLogInFailed = (logInError) => {
-      dispatch(users.actions.setStatusMessage({ statusMessage: logInError }));
-    };
-
     fetch(LOGIN_URL, {
       method: "POST",
       headers: { "Content-Type": "application/JSON" },
@@ -55,14 +48,16 @@ export const logInFetch = (user) => {
     })
       .then((res) => {
         if (!res.ok) {
-          throw new Error(
-            "Kunde inte logga in, kontrollera dina användaruppgifter."
-          );
+          throw "Kunde inte logga in, kontrollera dina användaruppgifter.";
         }
         return res.json();
       })
-      .then((json) => handleLogInSuccess(json))
-      .catch((err) => handleLogInFailed(err));
+      .then((json) => {
+        dispatch(users.actions.logIn(json));
+      })
+      .catch((err) => {
+        dispatch(users.actions.setErrorMessage({ errorMessage: err }));
+      });
   };
 };
 
@@ -72,12 +67,9 @@ export const updateUserFetch = (user) => {
   return (dispatch) => {
     const handleUpdateSuccess = () => {
       console.log("Fetch sucess!");
-      dispatch(users.actions.updateUser(user));
-      dispatch(users.actions.updateFavourites(user.id));
     };
     const handleUpdateFailed = (updateError) => {
       console.log("Fetch failed!");
-      dispatch(users.actions.setStatusMessage({ statusMessage: updateError }));
     };
 
     fetch(`http://localhost:8080/${user.id}/user`, {
@@ -96,11 +88,20 @@ export const updateUserFetch = (user) => {
     })
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Could not update user");
+          throw new Error("Kunde inte uppdatera användaruppgifterna");
         }
         return res.json();
       })
-      .then((json) => handleUpdateSuccess(json))
-      .catch((err) => handleUpdateFailed(err));
+      .then((json) => {
+        console.log("json: " + JSON.stringify(json))
+        console.log("user: " + JSON.stringify(user))
+        dispatch(users.actions.updateUser(user));
+        dispatch(users.actions.updateFavourites(user.id));
+      })
+      .catch((err) => {
+        dispatch(
+          users.actions.setStatusMessage({ statusMessage: err })
+        );
+      });
   };
 };

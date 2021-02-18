@@ -10,6 +10,7 @@ export const UserPage = () => {
   const history = useHistory();
 
   const user = useSelector((store) => store.users.user);
+  const favourites = useSelector((store) => store.users.favourites);  
 
   if (!user.accessToken) {
     history.push("/");
@@ -21,7 +22,7 @@ export const UserPage = () => {
         <FrameContainer>
           <MainContainer>
             <UserDetails />
-            <Favourites user={user} />
+            <Favourites favourites={favourites} />
           </MainContainer>
         </FrameContainer>
       </OuterContainer>

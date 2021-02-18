@@ -10,6 +10,7 @@ const initialState = {
   },
   favourites: localStorage.favourites || [],
   statusMessage: null,
+  errorMessage: null,
 };
 
 export const users = createSlice({
@@ -46,6 +47,8 @@ export const users = createSlice({
       state.user.lastName = null;
       state.user.email = null;
       state.favourites = null;
+      state.statusMessage = null;
+      state.errorMessage = null;
       localStorage.clear();
     },
     updateUser: (state, action) => {
@@ -76,6 +79,9 @@ export const users = createSlice({
     },
     setStatusMessage: (state, action) => {
       state.statusMessage = action.payload.statusMessage;
+    },
+    setErrorMessage: (state, action) => {
+      state.errorMessage = action.payload.errorMessage;
     },
   },
 });
