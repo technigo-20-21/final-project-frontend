@@ -1,23 +1,22 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   CategoryLink,
   ThumbImage,
-  ThumbText, 
+  ThumbText,
   ThumbIcon,
-  ThumbTextBox
+  ThumbTextBox,
 } from "../library/ThumbStyles";
 
 export const CategoryThumb = ({ name, display_name, img_url }) => {
-
   return (
-      <CategoryLink to={`/locals/${name}`} >
-        <ThumbImage url={img_url}>
-          <ThumbTextBox>
-            <ThumbText>{display_name}</ThumbText>
-            <ThumbIcon className="fas fa-chevron-circle-left"></ThumbIcon>
-          </ThumbTextBox>
-        </ThumbImage>
-      </CategoryLink>
+    <CategoryLink to={`/locals/${name}`}>
+      <ThumbImage url={img_url}>
+        <ThumbTextBox>
+          <ThumbText>{display_name}</ThumbText>
+          <ThumbIcon className="fas fa-chevron-circle-left"></ThumbIcon>
+        </ThumbTextBox>
+      </ThumbImage>
+    </CategoryLink>
   );
 };

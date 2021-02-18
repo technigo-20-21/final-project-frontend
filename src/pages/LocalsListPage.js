@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { locals } from "../reducers/locals";
 import { fetchLocalsList } from "../reducers/localsFetch";
 import { LocalsListThumb } from "../components/LocalsListThumb";
 import { LocalsContainer } from "../library/LocalListPageStyles";
@@ -11,19 +10,19 @@ import { LottieLoader as Loader } from "../library/LottieLoader";
 export const LocalsListPage = () => {
   const dispatch = useDispatch();
   const { category } = useParams();
-  const localsListStatus = useSelector((state) => state.locals.localsList.status);
+  const localsListStatus = useSelector(
+    (state) => state.locals.localsList.status
+  );
   const localsListError = useSelector((state) => state.locals.localsList.error);
   const localsList = useSelector((state) => state.locals.localsList.locals);
-  
+
   const [localList, setLocalList] = useState(localsList ? localsList : []);
 
   useEffect(() => {
-    // if (localsListStatus === "idle") {
-      dispatch(fetchLocalsList(category)).then((result) => {
-        const newLocalsList = result.payload;
-        setLocalList(newLocalsList);
-      });
-    
+    dispatch(fetchLocalsList(category)).then((result) => {
+      const newLocalsList = result.payload;
+      setLocalList(newLocalsList);
+    });
   }, [dispatch, category]);
 
   let content;
@@ -31,7 +30,6 @@ export const LocalsListPage = () => {
   if (localsListStatus === "loading") {
     content = <Loader />;
   } else if (localsListStatus === "succeeded") {
-
     content = localList.map((local) => (
       <LocalsListThumb key={local.id} {...local} />
     ));

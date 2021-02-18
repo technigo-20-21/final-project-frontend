@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
-import styled from "styled-components/macro";
+import { useHistory } from "react-router-dom";
 
 import { logInFetch } from "../reducers/userFetch";
+import {
+  LogInForm,
+  UserInput,
+  Button,
+  SignUp,
+  StyledLink,
+} from "../library/LoginStyles";
 
 export const LogIn = () => {
   const accessToken = useSelector((store) => store.users.user.accessToken);
@@ -30,7 +36,7 @@ export const LogIn = () => {
           type="email"
           required
           placeholder="Email"
-          value={user.email}
+          value={user.email.toLowerCase()}
           onChange={(event) => setUser({ ...user, email: event.target.value })}
         ></UserInput>
       </label>
@@ -45,7 +51,7 @@ export const LogIn = () => {
           }
         ></UserInput>
       </label>
-      {errorMessage && <p>Error message: {errorMessage}</p>}
+      {errorMessage && <p>{errorMessage}</p>}
       <Button type="submit">Log in</Button>
       <SignUp>
         Saknar du ett konto?{" "}
@@ -56,39 +62,3 @@ export const LogIn = () => {
     </LogInForm>
   );
 };
-
-const LogInForm = styled.form`
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const UserInput = styled.input`
-  margin: 5px;
-  padding: 10px;
-  width: 250px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  color: #697181;
-`;
-
-const Button = styled.button`
-  margin: 10px;
-  background: #29354b;
-  padding: 5px 35px 7px 35px;
-  border-radius: 25px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  color: #fff;
-  outline: none;
-`;
-
-const SignUp = styled.p`
-  color: #29354b;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: #29354b;
-`;

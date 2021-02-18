@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components/macro";
 import { useHistory } from "react-router-dom";
 
 import { users } from "../reducers/users";
 import { signUpFetch } from "../reducers/userFetch";
+import {
+  SignUpForm,
+  UserInput,
+  Button,
+  AccoutCreatedText,
+} from "../library/SignUpStyles";
 
 export const SignUp = () => {
   const history = useHistory();
@@ -19,6 +24,7 @@ export const SignUp = () => {
   const [accountCreated, setAccountCreated] = useState(false);
   const accessToken = useSelector((store) => store.users.user.accessToken);
   const statusMessage = useSelector((store) => store.users.statusMessage);
+  const errorMessage = useSelector((store) => store.users.errorMessage);
 
   if (accessToken) {
     history.push("/");
@@ -34,7 +40,7 @@ export const SignUp = () => {
       setUserMessage("Efternamn måste vara minst två tecken långt.");
     } else if (user.lastName.length > 20) {
       setUserMessage("Efternamn kan vara max 20 tecken långt.");
-    }else if (user.password.length < 6) {
+    } else if (user.password.length < 6) {
       setUserMessage("Lösenord måste vara minst sex tecken långt.");
     } else {
       dispatch(signUpFetch(user));
@@ -46,6 +52,7 @@ export const SignUp = () => {
   if (statusMessage === "User account created") {
     setAccountCreated(true);
     dispatch(users.actions.setStatusMessage({ statusMessage: "" }));
+    dispatch(users.actions.setStatusMessage({ errorMessage: "" }));
   }
 
   return (
@@ -101,43 +108,11 @@ export const SignUp = () => {
               }
             ></UserInput>
           </label>
-          {userMessage ? <p>{userMessage}</p> : null}
+          {userMessage && <p>{userMessage}</p>}
+          {errorMessage && <p>{errorMessage}</p>}
           <Button type="submit">Skapa konto</Button>
         </SignUpForm>
       )}
     </>
   );
 };
-
-const SignUpForm = styled.form`
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const UserInput = styled.input`
-  margin: 5px;
-  padding: 10px;
-  width: 250px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  color: #697181;
-`;
-
-const Button = styled.button`
-  margin: 10px;
-  background: #29354b;
-  padding: 10px 20px 13px 20px;
-  border-radius: 25px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  color: #fff;
-  outline: none;
-`;
-
-const AccoutCreatedText = styled.p`
-  margin: 100px 0;
-  text-align: center;
-  color: #29354b;
-`;

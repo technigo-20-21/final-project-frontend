@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchLocalsList, fetchLocal } from "./localsFetch";
+
 const initialState = {
   localsList: {
     locals: [],

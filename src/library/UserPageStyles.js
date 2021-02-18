@@ -4,9 +4,6 @@ import styled from "styled-components";
 export const OuterContainer = styled.div`
   margin: 20px;
   padding: 60px;
-//   border-radius: 8px;
-//   background: #E3B051;
-//   // background: #44587c;
 `;
 
 export const FrameContainer = styled.div`
@@ -19,7 +16,6 @@ export const FrameContainer = styled.div`
 export const MainContainer = styled.div`
   padding: 30px 30px 10px 30px;
   border-radius: 16px;
-  // border: 20px solid #cab4bc;
   display: flex;
   justify-content: space-between;
   background: #fff;

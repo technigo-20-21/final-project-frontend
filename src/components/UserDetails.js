@@ -22,7 +22,6 @@ export const UserDetails = () => {
     email: user.email,
     firstName: user.firstName,
     lastName: user.lastName,
-    // password: user.password,
   });
   const [userMessage, setUserMessage] = useState(null);
 
@@ -45,10 +44,6 @@ export const UserDetails = () => {
       setEditUser(false);
       setUserMessage(null);
     }
-
-    // else if (editedUser.password.length < 6) {
-    //   console.log("Lösenordet måste vara minst sex tecken långt.");
-    // }
   };
 
   const handleOnCancel = () => {
@@ -123,22 +118,6 @@ export const UserDetails = () => {
 
         {editUser ? (
           <>
-            {/* <Container>
-              <LabelHeader>Lösenord: </LabelHeader>
-              <label>
-                <UserInput
-                  value={editedUser.password}
-                  onChange={(event) =>
-                    setEditedUser({
-                      ...editedUser,
-                      password: event.target.value,
-                    })
-                  }
-                  type="password"
-                  required
-                ></UserInput>
-              </label>
-            </Container> */}
             {userMessage ? <p>{userMessage}</p> : null}
             <DetailsContainer>
               <UserButton>Spara</UserButton>
