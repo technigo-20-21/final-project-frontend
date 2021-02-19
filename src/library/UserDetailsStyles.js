@@ -12,7 +12,7 @@ export const UserDetailsContainer = styled.div`
   border: 3px solid #ddd;
   border-style: inset;
 
-  @media (min-width: 750px) {
+  @media (min-width: 900px) {
     width: 50%;
     margin-right: 10px;
     margin-bottom: 0;
@@ -25,9 +25,12 @@ export const LogInForm = styled.form`
 `;
 
 export const DetailsContainer = styled.div`
+padding-right: 20px;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+
+  @media (max-width: 400px) {
+    flex-direction: column;
+  }
 `;
 
 export const ButtonContainer = styled.div`

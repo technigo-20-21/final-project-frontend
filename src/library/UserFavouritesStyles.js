@@ -9,7 +9,7 @@ export const UserFavouritesContainer = styled.div`
   border: 3px solid #ddd;
   border-style: inset;  
 
-  @media (min-width: 750px) {
+  @media (min-width: 900px) {
     margin-left: 10px;
     width: 50%;
   }
