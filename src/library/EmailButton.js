@@ -12,8 +12,8 @@ padding: 6px;
 `;
 
 const CustomLinkIcon = styled.button`
-  width: 75px;
-  height: 75px;
+  width: 80px;
+  height: 80px;
   background-color: #DEAE15;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1), 0 0 11px rgba(0, 0, 0, 0.1);
   border-radius: 50%;

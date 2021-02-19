@@ -11,6 +11,16 @@ export const CategoryLink = styled(Link)`
 
 export const MainContainer = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+
+    @media (max-width: 1198px) {
+      width: 45%;
+      flex-grow: 1;
+    }
+      @media (max-width: 400px) {
+      width: 100%;
+    }
 `;
 
 export const CardContainer = styled.div`
@@ -24,9 +34,8 @@ export const CardContainer = styled.div`
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
 
-    @media (max-width: 400px) {
-      width: 100%;
-    }
+
+
 `;
 
 export const LocalLink = styled(Link)`

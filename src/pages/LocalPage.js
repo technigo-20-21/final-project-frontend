@@ -45,13 +45,14 @@ export const LocalPage = () => {
       <>
         <SectionHeader>{loc.name}</SectionHeader>
         <SectionTagline>Din lokala företagare i Torslanda</SectionTagline>
-        <LocalCard key={loc.id} {...loc} />
         <Map
           position={loc.geolocation}
           name={loc.name}
           street={loc.street_address}
           zip={loc.zip_code}
         />
+        <LocalCard key={loc.id} {...loc} />
+
       </>
     );
   } else if (singleLocalStatus === "failed") {

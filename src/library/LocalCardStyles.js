@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 
 export const CardWrapper = styled.div`
-    max-height: 450px;
+    max-height: 500px;
     width: 25%;
     position: absolute;
     top: 36%;
@@ -22,7 +22,17 @@ export const CardWrapper = styled.div`
     0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072),
     0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12)
+    0 100px 80px rgba(0, 0, 0, 0.12);
+
+    @media (max-width: 699px) {
+      width: 80%;
+      position: static;
+      box-shadow: none;      
+    }
+
+    @media (max-width: 1189px) {
+        width: 30%
+    }
 `
 
 export const CardHeader = styled.h2`

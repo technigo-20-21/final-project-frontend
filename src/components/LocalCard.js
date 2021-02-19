@@ -15,7 +15,8 @@ export const LocalCard = ({ name, phone_number, email, menu, web_shop, booking, 
             </AddressStyle>
             <CallButton phone_number={phone_number} />
             <EmailButton email={email} />
-            <p>{menu} {web_shop} {booking}</p>
+            {/* FOR LATER IMPLEMENTATION */}
+            {/* <p>{menu} {web_shop} {booking}</p> */}
             <HomePageButton url={url} />
         </CardWrapper>
     )

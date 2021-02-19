@@ -7,6 +7,10 @@ export const SectionContainer = styled.section`
     flex-wrap: wrap;
     padding: 40px;
     position: relative;
+    @media (max-width: 699px) {
+        padding: 12px;
+        justify-content: center;
+    }
 `
 export const SectionHeader = styled.h1`
     width: 100%;
