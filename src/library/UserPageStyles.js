@@ -17,14 +17,10 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  // border-radius: 16px;
 
   @media (max-width: 900px) {
     padding: 30px 40px 10px 40px;
     flex-direction: column;
-    align-items: center;
-
-    
-    
+    align-items: center;    
   }
 `;
