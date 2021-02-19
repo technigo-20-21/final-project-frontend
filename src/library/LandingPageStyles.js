@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 export const Container = styled.main`
   height: 100%;
@@ -12,4 +12,13 @@ export const CategoriesContainer = styled.section`
   grid-template-rows: 1fr 1fr;
   column-gap: 10px;
   row-gap: 10px;
+
+  @media (max-width: 550px) {
+   display: flex;
+   flex-wrap: wrap;
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+   }
 `

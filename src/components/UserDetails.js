@@ -7,6 +7,7 @@ import {
   UserDetailsContainer,
   LogInForm,
   DetailsContainer,
+  ButtonContainer,
   LabelHeader,
   UserInput,
   UserButton,
@@ -22,7 +23,6 @@ export const UserDetails = () => {
     email: user.email,
     firstName: user.firstName,
     lastName: user.lastName,
-    // password: user.password,
   });
   const [userMessage, setUserMessage] = useState(null);
 
@@ -45,10 +45,6 @@ export const UserDetails = () => {
       setEditUser(false);
       setUserMessage(null);
     }
-
-    // else if (editedUser.password.length < 6) {
-    //   console.log("Lösenordet måste vara minst sex tecken långt.");
-    // }
   };
 
   const handleOnCancel = () => {
@@ -65,92 +61,94 @@ export const UserDetails = () => {
       <h2>{editUser ? "Redigera profil" : "Min profil"}</h2>
       <LogInForm onSubmit={handleOnSave}>
         <DetailsContainer>
-          <LabelHeader>E-post: </LabelHeader>
           {editUser ? (
-            <label>
-              <UserInput
-                value={editedUser.email}
-                onChange={(event) =>
-                  setEditedUser({ ...editedUser, email: event.target.value })
-                }
-                type="email"
-                required
-              ></UserInput>
-            </label>
+            <>
+              <LabelHeader>E-post: </LabelHeader>
+              <label>
+                <UserInput
+                  value={editedUser.email}
+                  onChange={(event) =>
+                    setEditedUser({ ...editedUser, email: event.target.value })
+                  }
+                  type="email"
+                  required
+                ></UserInput>
+              </label>
+            </>
           ) : (
-            user.email
+            <>
+              <LabelHeader>E-post: </LabelHeader>
+              <p>{user.email}</p>
+            </>
           )}
         </DetailsContainer>
 
         <DetailsContainer>
-          <LabelHeader>Förnamn: </LabelHeader>
           {editUser ? (
-            <label>
-              <UserInput
-                value={editedUser.firstName}
-                onChange={(event) =>
-                  setEditedUser({
-                    ...editedUser,
-                    firstName: event.target.value,
-                  })
-                }
-                type="text"
-                required
-              ></UserInput>
-            </label>
+            <>
+              <LabelHeader>Förnamn: </LabelHeader>
+              <label>
+                <UserInput
+                  value={editedUser.firstName}
+                  onChange={(event) =>
+                    setEditedUser({
+                      ...editedUser,
+                      firstName: event.target.value,
+                    })
+                  }
+                  type="text"
+                  required
+                ></UserInput>
+              </label>
+            </>
           ) : (
-            user.firstName
+            <>
+              <LabelHeader>Förnamn: </LabelHeader>
+              <p>{user.firstName}</p>
+            </>
           )}
         </DetailsContainer>
 
         <DetailsContainer>
-          <LabelHeader>Efternamn: </LabelHeader>
           {editUser ? (
-            <label>
-              <UserInput
-                value={editedUser.lastName}
-                onChange={(event) =>
-                  setEditedUser({ ...editedUser, lastName: event.target.value })
-                }
-                type="text"
-                required
-              ></UserInput>
-            </label>
+            <>
+              <LabelHeader>Efternamn: </LabelHeader>
+              <label>
+                <UserInput
+                  value={editedUser.lastName}
+                  onChange={(event) =>
+                    setEditedUser({
+                      ...editedUser,
+                      lastName: event.target.value,
+                    })
+                  }
+                  type="text"
+                  required
+                ></UserInput>
+              </label>
+            </>
           ) : (
-            user.lastName
+            <>
+              <LabelHeader>Efternamn: </LabelHeader>
+              <p>{user.lastName}</p>
+            </>
           )}
         </DetailsContainer>
 
         {editUser ? (
           <>
-            {/* <Container>
-              <LabelHeader>Lösenord: </LabelHeader>
-              <label>
-                <UserInput
-                  value={editedUser.password}
-                  onChange={(event) =>
-                    setEditedUser({
-                      ...editedUser,
-                      password: event.target.value,
-                    })
-                  }
-                  type="password"
-                  required
-                ></UserInput>
-              </label>
-            </Container> */}
             {userMessage ? <p>{userMessage}</p> : null}
-            <DetailsContainer>
+            <ButtonContainer>
               <UserButton>Spara</UserButton>
               <UserButton onClick={handleOnCancel}>Avbryt</UserButton>
               <UserButton onClick={handleOnLogOut}>Logga ut</UserButton>
-            </DetailsContainer>
+            </ButtonContainer>
           </>
         ) : (
-          <DetailsContainer>
+          <ButtonContainer>
             <UserButton onClick={handleOnChange}>Redigera profil</UserButton>
             <UserButton onClick={handleOnLogOut}>Logga ut</UserButton>
-          </DetailsContainer>
+          </ButtonContainer>
         )}
       </LogInForm>
     </UserDetailsContainer>

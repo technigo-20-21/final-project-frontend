@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-console.log(localStorage.favourites)
 const initialState = {
   user: {
     id: localStorage.id || null,
@@ -8,7 +7,9 @@ const initialState = {
     lastName: localStorage.lastName || null,
     email: localStorage.email || null,
   },
-  favourites: localStorage.favourites ? JSON.parse(localStorage.favourites) : [],
+  favourites: localStorage.favourites
+    ? JSON.parse(localStorage.favourites)
+    : [],
   statusMessage: null,
   errorMessage: null,
 };
@@ -32,7 +33,6 @@ export const users = createSlice({
       state.user.lastName = lastName;
       state.user.email = email;
       state.favourites = favourites;
-      console.log(state.favourites);
       localStorage.setItem("id", id);
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("firstName", firstName);
@@ -61,24 +61,16 @@ export const users = createSlice({
       localStorage.setItem("email", email);
     },
     updateFavourites: (state, action) => {
-      console.log(action.payload)
       const id = action.payload;
-      console.log(state.favourites);
-
-      // const favouritesArray = state.favourites;
-      // console.log(favouritesArray);
       const isFavourite = state.favourites.includes(id);
 
       if (isFavourite) {
-        const removeFavourite = state.favourites.filter(
-          (item) => item !== id
-        );
+        const removeFavourite = state.favourites.filter((item) => item !== id);
         state.favourites = removeFavourite;
         localStorage.setItem("favourites", JSON.stringify(removeFavourite));
       } else {
         const addFavourite = [...state.favourites, id];
         state.favourites = addFavourite;
-        console.log(addFavourite);
         localStorage.setItem("favourites", JSON.stringify(addFavourite));
       }
     },

@@ -3,18 +3,6 @@ import { SIGNUP_URL, LOGIN_URL } from ".././urls";
 
 export const signUpFetch = (user) => {
   return (dispatch) => {
-    const handleSignUpSuccess = () => {
-      console.log(`User ${user.firstName} ${user.lastName} was created.`);
-      dispatch(
-        users.actions.setStatusMessage({
-          statusMessage: "User account created",
-        })
-      );
-    };
-    const handleSignUpFailed = (signUpError) => {
-      dispatch(users.actions.setStatusMessage({ statusMessage: signUpError }));
-    };
-
     fetch(SIGNUP_URL, {
       method: "POST",
       headers: { "Content-Type": "application/JSON" },
@@ -27,12 +15,20 @@ export const signUpFetch = (user) => {
     })
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Signup failed");
+          throw "Det gick inte att skapa kontot.";
         }
         return res.json();
       })
-      .then((json) => handleSignUpSuccess())
-      .catch((err) => handleSignUpFailed(err));
+      .then((json) => {
+        dispatch(
+          users.actions.setStatusMessage({
+            statusMessage: "User account created",
+          })
+        );
+      })
+      .catch((err) => {
+        dispatch(users.actions.setErrorMessage({ errorMessage: err }));
+      });
   };
 };
 
@@ -62,16 +58,7 @@ export const logInFetch = (user) => {
 };
 
 export const updateUserFetch = (user) => {
-  console.log("Tar emot: " + JSON.stringify(user.favourites));
-
   return (dispatch) => {
-    const handleUpdateSuccess = () => {
-      console.log("Fetch sucess!");
-    };
-    const handleUpdateFailed = (updateError) => {
-      console.log("Fetch failed!");
-    };
-
     fetch(`http://localhost:8080/${user.id}/user`, {
       method: "PUT",
       headers: {
@@ -82,26 +69,47 @@ export const updateUserFetch = (user) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
-        favourites: user.favourites,
-        // password: user.password,
       }),
     })
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Kunde inte uppdatera användaruppgifterna");
+          throw "Kunde inte uppdatera användaruppgifterna";
         }
         return res.json();
       })
       .then((json) => {
-        console.log("json: " + JSON.stringify(json))
-        console.log("user: " + JSON.stringify(user))
         dispatch(users.actions.updateUser(user));
-        dispatch(users.actions.updateFavourites(user.id));
       })
       .catch((err) => {
-        dispatch(
-          users.actions.setStatusMessage({ statusMessage: err })
-        );
+        dispatch(users.actions.setErrorMessage({ errorMessage: err }));
+      });
+  };
+};
+
+export const updateFavouritesFetch = (
+  userId,
+  accessToken,
+  updatedFavourites
+) => {
+  return (dispatch) => {
+    fetch(`http://localhost:8080/${userId}/favourites`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/JSON",
+        Authorization: accessToken,
+      },
+      body: JSON.stringify({
+        favourites: updatedFavourites,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw "Kunde inte uppdatera favoriter";
+        }
+        return res.json();
+      })
+      .catch((err) => {
+        dispatch(users.actions.setErrorMessage({ errorMessage: err }));
       });
   };
 };

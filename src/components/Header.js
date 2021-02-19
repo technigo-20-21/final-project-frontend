@@ -1,7 +1,8 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { Link, NavLink} from "react-router-dom";
-import styled from "styled-components"
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+
+import { users } from "../reducers/users";
 import { UserIcon } from "../library/UserIcon";
 import {
   TopRow,
@@ -10,17 +11,24 @@ import {
   Title,
   SubTitle,
   BottomRow,
-  Nav
+  Nav,
+  LocalLink,
 } from "../library/HeaderStyles";
 
 export const Header = () => {
+  const dispatch = useDispatch();
   const accessToken = useSelector((store) => store.users.user.accessToken);
+
+  const handleOnClick = () => {
+    dispatch(users.actions.setErrorMessage(""));
+    dispatch(users.actions.setStatusMessage(""));
+  };
 
   return (
     <>
       <TopRow>
         {!accessToken && (
-          <Link to="/LogIn">
+          <Link to="/LogIn" onClick={handleOnClick}>
             <LogInButton>Logga in</LogInButton>
           </Link>
         )}
@@ -47,17 +55,3 @@ export const Header = () => {
     </>
   );
 };
-
-
-export const LocalLink = styled(NavLink)`
-  margin-top: 5px;
-  padding: 5px 10px;
-  text-decoration: none;
-  color: #29354b;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
-
-  &:hover {
-    border-image: linear-gradient(to right, transparent, #999, transparent) 5;
-  }
-  `;

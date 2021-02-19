@@ -4,25 +4,25 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import { users } from "./reducers/users";
-import { locals } from "./reducers/locals";
-import { Header } from "./components/Header"
+import { locals } from "./reducers/locals";
+import { Header } from "./components/Header";
 import { LandingPage } from "./pages/LandingPage";
 import { LocalsListPage } from "./pages/LocalsListPage";
 import { LocalPage } from "./pages/LocalPage";
-import { LogIn } from "./pages/LogIn"
-import { SignUp } from "./pages/SignUp"
-import { UserPage } from "./pages/UserPage"
-import { Footer } from "./components/Footer"
+import { LogIn } from "./pages/LogIn";
+import { SignUp } from "./pages/SignUp";
+import { UserPage } from "./pages/UserPage";
+import { Footer } from "./components/Footer";
 
 const reducer = combineReducers({
   users: users.reducer,
-  locals: locals.reducer
+  locals: locals.reducer,
 });
 
-const store = configureStore({ 
+const store = configureStore({
   reducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware()
- });
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+});
 
 export const App = () => {
   return (
@@ -49,7 +49,7 @@ export const App = () => {
             <Route path="/userpage" exact>
               <UserPage />
             </Route>
-            <Redirect to="/" />            
+            <Redirect to="/" />
           </Switch>
         </main>
         <Footer />

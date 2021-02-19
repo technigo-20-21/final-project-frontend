@@ -64,4 +64,21 @@ export const Nav = styled.div`
   display: flex;
   justify-content: space-evenly;
   padding: 15px;
+
+  @media (max-width: 666px) {
+    display: none;
+  }
 `;
+
+export const LocalLink = styled(NavLink)`
+  margin-top: 5px;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #29354b;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+
+  &:hover {
+    border-image: linear-gradient(to right, transparent, #999, transparent) 5;
+  }
+  `;
