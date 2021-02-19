@@ -64,6 +64,10 @@ export const Nav = styled.div`
   display: flex;
   justify-content: space-evenly;
   padding: 15px;
+
+  @media (max-width: 666px) {
+    display: none;
+  }
 `;
 
 export const LocalLink = styled(NavLink)`

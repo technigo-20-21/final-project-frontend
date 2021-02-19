@@ -9,7 +9,7 @@ export const UserFavourites = ({ favourites }) => {
 
   return (
     <UserFavouritesContainer>
-      <h3>Mina favoriter</h3>
+      <h2>Mina favoriter</h2>
       <p>Här kommer du så småning om kunna se dina favoriter.</p>
       {/* {favouritesArray.map((id, index) => (
           <p key={index}>{id}</p>

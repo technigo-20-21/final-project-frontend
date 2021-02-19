@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import { UserDetails } from "../components/UserDetails";
 import { UserFavourites } from "../components/UserFavourites";
-import { OuterContainer, FrameContainer, MainContainer } from "../library/UserPageStyles";
+import { OuterContainer, MainContainer } from "../library/UserPageStyles";
 
 export const UserPage = () => {
   const history = useHistory();
@@ -18,12 +18,10 @@ export const UserPage = () => {
   return (
     <>
       <OuterContainer>
-        <FrameContainer>
           <MainContainer>
             <UserDetails />
             <UserFavourites favourites={favourites} />
           </MainContainer>
-        </FrameContainer>
       </OuterContainer>
     </>
   );

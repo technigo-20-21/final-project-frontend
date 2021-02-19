@@ -7,6 +7,7 @@ import {
   UserDetailsContainer,
   LogInForm,
   DetailsContainer,
+  ButtonContainer,
   LabelHeader,
   UserInput,
   UserButton,
@@ -60,76 +61,94 @@ export const UserDetails = () => {
       <h2>{editUser ? "Redigera profil" : "Min profil"}</h2>
       <LogInForm onSubmit={handleOnSave}>
         <DetailsContainer>
-          <LabelHeader>E-post: </LabelHeader>
           {editUser ? (
-            <label>
-              <UserInput
-                value={editedUser.email}
-                onChange={(event) =>
-                  setEditedUser({ ...editedUser, email: event.target.value })
-                }
-                type="email"
-                required
-              ></UserInput>
-            </label>
+            <>
+              <LabelHeader>E-post: </LabelHeader>
+              <label>
+                <UserInput
+                  value={editedUser.email}
+                  onChange={(event) =>
+                    setEditedUser({ ...editedUser, email: event.target.value })
+                  }
+                  type="email"
+                  required
+                ></UserInput>
+              </label>
+            </>
           ) : (
-            user.email
+            <>
+              <LabelHeader>E-post: </LabelHeader>
+              user.email
+            </>
           )}
         </DetailsContainer>
 
         <DetailsContainer>
-          <LabelHeader>Förnamn: </LabelHeader>
           {editUser ? (
-            <label>
-              <UserInput
-                value={editedUser.firstName}
-                onChange={(event) =>
-                  setEditedUser({
-                    ...editedUser,
-                    firstName: event.target.value,
-                  })
-                }
-                type="text"
-                required
-              ></UserInput>
-            </label>
+            <>
+              <LabelHeader>Förnamn: </LabelHeader>
+              <label>
+                <UserInput
+                  value={editedUser.firstName}
+                  onChange={(event) =>
+                    setEditedUser({
+                      ...editedUser,
+                      firstName: event.target.value,
+                    })
+                  }
+                  type="text"
+                  required
+                ></UserInput>
+              </label>
+            </>
           ) : (
-            user.firstName
+            <>
+              <LabelHeader>Förnamn: </LabelHeader>
+              user.firstName
+            </>
           )}
         </DetailsContainer>
 
         <DetailsContainer>
-          <LabelHeader>Efternamn: </LabelHeader>
           {editUser ? (
-            <label>
-              <UserInput
-                value={editedUser.lastName}
-                onChange={(event) =>
-                  setEditedUser({ ...editedUser, lastName: event.target.value })
-                }
-                type="text"
-                required
-              ></UserInput>
-            </label>
+            <>
+              <LabelHeader>Efternamn: </LabelHeader>
+              <label>
+                <UserInput
+                  value={editedUser.lastName}
+                  onChange={(event) =>
+                    setEditedUser({
+                      ...editedUser,
+                      lastName: event.target.value,
+                    })
+                  }
+                  type="text"
+                  required
+                ></UserInput>
+              </label>
+            </>
           ) : (
-            user.lastName
+            <>
+              <LabelHeader>Efternamn: </LabelHeader>
+              user.lastName
+            </>
           )}
         </DetailsContainer>
 
         {editUser ? (
           <>
             {userMessage ? <p>{userMessage}</p> : null}
-            <DetailsContainer>
+            <ButtonContainer>
               <UserButton>Spara</UserButton>
               <UserButton onClick={handleOnCancel}>Avbryt</UserButton>
               <UserButton onClick={handleOnLogOut}>Logga ut</UserButton>
-            </DetailsContainer>
+            </ButtonContainer>
           </>
         ) : (
-          <DetailsContainer>
+          <ButtonContainer>
             <UserButton onClick={handleOnChange}>Redigera profil</UserButton>
             <UserButton onClick={handleOnLogOut}>Logga ut</UserButton>
-          </DetailsContainer>
+          </ButtonContainer>
         )}
       </LogInForm>
     </UserDetailsContainer>
