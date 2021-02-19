@@ -78,7 +78,7 @@ export const UserDetails = () => {
           ) : (
             <>
               <LabelHeader>E-post: </LabelHeader>
-              user.email
+              <p>{user.email}</p>
             </>
           )}
         </DetailsContainer>
@@ -104,7 +104,7 @@ export const UserDetails = () => {
           ) : (
             <>
               <LabelHeader>Förnamn: </LabelHeader>
-              user.firstName
+              <p>{user.firstName}</p>
             </>
           )}
         </DetailsContainer>
@@ -130,7 +130,7 @@ export const UserDetails = () => {
           ) : (
             <>
               <LabelHeader>Efternamn: </LabelHeader>
-              user.lastName
+              <p>{user.lastName}</p>
             </>
           )}
         </DetailsContainer>
