@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import uniqid from "uniqid";
 
 import { fetchLocalsList } from "../reducers/localsFetch";
 import { LocalsListThumb } from "../components/LocalsListThumb";
@@ -31,7 +32,7 @@ export const LocalsListPage = () => {
     content = <Loader />;
   } else if (localsListStatus === "succeeded") {
     content = localList.map((local) => (
-      <LocalsListThumb key={local.id} {...local} />
+      <LocalsListThumb key={uniqid()} {...local} />
     ));
   } else if (localsListStatus === "failed") {
     content = <div>{localsListError}</div>;
