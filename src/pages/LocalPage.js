@@ -34,7 +34,7 @@ export const LocalPage = () => {
         setLoc(newLocal);
       });
     }
-  }, [id]);
+  }, [id, dispatch, existingLocal]);
 
   let content;
 
