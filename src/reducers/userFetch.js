@@ -1,5 +1,5 @@
 import { users } from "./users";
-import { SIGNUP_URL, LOGIN_URL } from ".././urls";
+import { MESSAGE_URL, SIGNUP_URL, LOGIN_URL } from ".././urls";
 
 export const signUpFetch = (user) => {
   return (dispatch) => {
@@ -59,7 +59,7 @@ export const logInFetch = (user) => {
 
 export const updateUserFetch = (user) => {
   return (dispatch) => {
-    fetch(`http://localhost:8080/${user.id}/user`, {
+    fetch(MESSAGE_URL + `${user.id}/user`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -92,7 +92,7 @@ export const updateFavouritesFetch = (
   updatedFavourites
 ) => {
   return (dispatch) => {
-    fetch(`http://localhost:8080/${userId}/favourites`, {
+    fetch(MESSAGE_URL + `${userId}/favourites`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/JSON",
