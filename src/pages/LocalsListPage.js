@@ -21,7 +21,6 @@ export const LocalsListPage = () => {
 
   useEffect(() => {
     dispatch(fetchLocalsList(category)).then((result) => {
-      console.log(result)
       const newLocalsList = result.payload;
       setLocalList(newLocalsList);
     });

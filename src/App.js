@@ -34,7 +34,7 @@ export const App = () => {
             <Route path="/" exact>
               <LandingPage />
             </Route>
-            <Route path="/locals/:category">
+            <Route path="/locals/:category" exact>
               <LocalsListPage />
             </Route>
             <Route path="/local/:id">
