@@ -24,13 +24,13 @@ export const CardWrapper = styled.div`
     0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
 
-    @media (max-width: 699px) {
-      width: 80%;
+    @media screen and (max-width: 699px) {
+      width: 90%;
       position: static;
       box-shadow: none;      
     }
 
-    @media (max-width: 1189px) {
+    @media screen and (min-width: 700px) and (max-width: 1189px) {
         width: 30%
     }
 `
