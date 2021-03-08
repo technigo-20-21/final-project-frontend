@@ -33,9 +33,6 @@ export const CardContainer = styled.div`
     0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
-
-
-
 `;
 
 export const LocalLink = styled(Link)`
@@ -43,9 +40,9 @@ export const LocalLink = styled(Link)`
 `;
 
 export const ThumbTextBox = styled.div`
-  width: 55%;
+  width: 85%;
   background-color: rgba(0, 0, 0, 0.9);
-  border-radius: 15px 40px;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,7 +57,7 @@ export const ThumbImage = styled.div`
   background-color: #fff;
   color: #fff;
   border: solid 1px #5D5649;
-  font-size: 36px;
+  font-size: 28px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
