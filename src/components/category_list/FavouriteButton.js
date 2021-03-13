@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { users } from "../reducers/users";
-import { updateFavouritesFetch } from "../reducers/userFetch";
-import { FavouriteHeartButton } from "../library/ThumbStyles";
-import { FavouriteOutlinedButton } from "../library/FavouriteOutlinedButton";
-import { FavouriteFilledButton } from "../library/FavouriteFilledButton";
+import { users } from "../../reducers/users";
+import { updateFavouritesFetch } from "../../reducers/userFetch";
+import { FavouriteHeartButton } from "../../library/category_list_ui/ThumbStyles";
+import { FavouriteOutlinedButton } from "../../library/category_list_ui/FavouriteOutlinedButton";
+import { FavouriteFilledButton } from "../../library/category_list_ui/FavouriteFilledButton";
 
 export const FavouriteButton = ({ localId }) => {
   const dispatch = useDispatch();

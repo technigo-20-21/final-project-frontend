@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { users } from "../reducers/users";
-import { UserIcon } from "../library/UserIcon";
+import { UserIcon } from "../library/user_ui/UserIcon";
 import {
   TopRow,
   LogInButton,
@@ -13,7 +13,7 @@ import {
   BottomRow,
   Nav,
   LocalLink,
-} from "../library/HeaderStyles";
+} from "../library/global_ui/HeaderStyles";
 
 export const Header = () => {
   const dispatch = useDispatch();

@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchLocal } from "../reducers/localsFetch";
-import { LocalCard } from "../components/LocalCard";
-import { Map } from "../components/Map";
-import { LottieLoader as Loader } from "../library/LottieLoader";
+import { LocalCard } from "../components/single_local/LocalCard";
+import { Map } from "../components/single_local/Map";
+import { LottieLoader as Loader } from "../library/global_ui/LottieLoader";
 import {
   SectionContainer,
   SectionHeader,
   SectionTagline,
-} from "../library/LocalPageStyles";
+} from "../library/single_local_ui/LocalPageStyles";
 
 export const LocalPage = () => {
   const dispatch = useDispatch();

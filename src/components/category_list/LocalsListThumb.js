@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { FavouriteButton } from "../components/FavouriteButton";
+import { FavouriteButton } from "./FavouriteButton";
 import {
   CardContainer,
   LocalLink,
@@ -9,7 +9,7 @@ import {
   ThumbText,
   Container,
   MainContainer,
-} from "../library/ThumbStyles";
+} from "../../library/category_list_ui/ThumbStyles";
 
 export const LocalsListThumb = ({ _id, tagline, img_url }) => {
   const accessToken = useSelector((store) => store.users.user.accessToken);

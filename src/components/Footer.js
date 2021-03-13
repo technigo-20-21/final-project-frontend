@@ -4,7 +4,7 @@ import {
   Editor,
   LinkContainer,
   Contact,
-} from "../library/FooterStyles";
+} from "../library/global_ui/FooterStyles";
 
 export const Footer = () => {
   return (

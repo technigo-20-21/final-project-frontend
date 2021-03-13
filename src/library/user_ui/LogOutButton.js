@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
-import { users } from "../reducers/users";
+import { users } from "../../reducers/users";
 
 export const LogOutButton = () => {
   const dispatch = useDispatch();

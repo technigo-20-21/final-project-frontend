@@ -9,7 +9,7 @@ import {
   Button,
   SignUp,
   StyledLink,
-} from "../library/LoginStyles";
+} from "../library/user_ui/LoginStyles";
 
 export const LogIn = () => {
   const accessToken = useSelector((store) => store.users.user.accessToken);

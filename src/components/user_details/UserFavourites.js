@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   UserFavouritesContainer,
-} from "../library/UserFavouritesStyles";
+} from "../../library/user_ui/UserFavouritesStyles";
 
 export const UserFavourites = ({ favourites }) => {
   // const favouritesArray = JSON.parse(favourites ? favourites : []);

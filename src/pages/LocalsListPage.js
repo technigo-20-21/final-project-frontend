@@ -4,9 +4,9 @@ import { useParams } from "react-router-dom";
 import uniqid from "uniqid";
 
 import { fetchLocalsList } from "../reducers/localsFetch";
-import { LocalsListThumb } from "../components/LocalsListThumb";
-import { LocalsContainer } from "../library/LocalListPageStyles";
-import { LottieLoader as Loader } from "../library/LottieLoader";
+import { LocalsListThumb } from "../components/category_list/LocalsListThumb";
+import { LocalsContainer } from "../library/category_list_ui/LocalListPageStyles";
+import { LottieLoader as Loader } from "../library/global_ui/LottieLoader";
 
 export const LocalsListPage = () => {
   const dispatch = useDispatch();

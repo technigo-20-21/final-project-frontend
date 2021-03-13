@@ -9,7 +9,7 @@ import {
   UserInput,
   Button,
   AccoutCreatedText,
-} from "../library/SignUpStyles";
+} from "../library/user_ui/SignUpStyles";
 
 export const SignUp = () => {
   const history = useHistory();

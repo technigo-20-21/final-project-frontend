@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { CATEGORIES_URL } from "../urls";
-import { LottieLoader as Loader } from "../library/LottieLoader";
-import { CategoryThumb } from "../components/CategoryThumb";
+import { LottieLoader as Loader } from "../library/global_ui/LottieLoader";
+import { CategoryThumb } from "../components/category_list/CategoryThumb";
 import { Container, CategoriesContainer } from "../library/LandingPageStyles";
 
 export const LandingPage = () => {

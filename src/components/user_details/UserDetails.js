@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { users } from "../reducers/users";
-import { updateUserFetch } from "../reducers/userFetch";
+import { users } from "../../reducers/users";
+import { updateUserFetch } from "../../reducers/userFetch";
 import {
   UserDetailsContainer,
   LogInForm,
@@ -11,7 +11,7 @@ import {
   LabelHeader,
   UserInput,
   UserButton,
-} from "../library/UserDetailsStyles";
+} from "../../library/user_ui/UserDetailsStyles";
 
 export const UserDetails = () => {
   const dispatch = useDispatch();
