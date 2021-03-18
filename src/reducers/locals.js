@@ -8,7 +8,7 @@ const initialState = {
     error: null,
   },
   singleLocal: {
-    local: "",
+    local: [],
     status: "idle",
     error: null,
   },

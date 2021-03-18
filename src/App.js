@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -13,6 +13,7 @@ import { LogIn } from "./pages/LogIn";
 import { SignUp } from "./pages/SignUp";
 import { UserPage } from "./pages/UserPage";
 import { Footer } from "./components/Footer";
+import { LottieLoader } from "library/global_ui/LottieLoader";
 
 const reducer = combineReducers({
   users: users.reducer,
@@ -24,10 +25,15 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
+const CategoryThumb = lazy(() => import("./components/category_list/LocalsListThumb.js"))
+const Map = lazy(() => import("./components/single_local/Map.js"))
+const Login = lazy(() => import("./pages/LogIn"))
+
 export const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
+        <Suspense fallback={<LottieLoader />}>
         <Header />
         <main>
           <Switch>
@@ -35,13 +41,13 @@ export const App = () => {
               <LandingPage />
             </Route>
             <Route path="/locals/:category" exact>
-              <LocalsListPage />
+              <LocalsListPage component={CategoryThumb}/>
             </Route>
-            <Route path="/local/:id" exact>
-              <LocalPage />
+            <Route path="/local/:id" exact >
+              <LocalPage component={Map}/>
             </Route>
-            <Route path="/login" exact>
-              <LogIn />
+            <Route path="/login" exact >
+              <LogIn component={LogIn}/>
             </Route>
             <Route path="/signup" exact>
               <SignUp />
@@ -53,6 +59,7 @@ export const App = () => {
           </Switch>
         </main>
         <Footer />
+        </Suspense>
       </BrowserRouter>
     </Provider>
   );

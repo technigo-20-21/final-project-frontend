@@ -3,9 +3,8 @@ import { CardWrapper, CardHeader, AddressStyle, AddressText } from "../../librar
 import  { CallButton } from "../../library/single_local_ui/CallButton"
 import { EmailButton } from "../../library/single_local_ui/EmailButton"
 import { HomePageButton } from "../../library/single_local_ui/HomePageButton"
-export const LocalCard = (local) => {
 
-    console.log(local)
+export const LocalCard = (local) => {
     return (
         <CardWrapper>
             <CardHeader>Välkommen till {local.name}</CardHeader>
