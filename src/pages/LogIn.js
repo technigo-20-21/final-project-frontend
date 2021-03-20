@@ -52,7 +52,7 @@ export const LogIn = () => {
         ></UserInput>
       </label>
       {errorMessage && <p>{errorMessage}</p>}
-      <Button type="submit">Log in</Button>
+      <Button type="submit">Logga in</Button>
       <SignUp>
         Saknar du ett konto?{" "}
         <StyledLink to="/SignUp">

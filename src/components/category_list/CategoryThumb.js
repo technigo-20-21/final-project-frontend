@@ -7,7 +7,7 @@ import {
   ThumbTextBox,
 } from "../../library/category_list_ui/ThumbStyles";
 
-export const CategoryThumb = ({ name, display_name, img_url, cover }) => {
+export const CategoryThumb = ({ name, display_name, img_url }) => {
   return (
     <CategoryLink to={`/locals/${name}`}>
       <ThumbImage url={img_url} imgSize={cover}>
