@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { MAPBOX_URL } from "../../urls";

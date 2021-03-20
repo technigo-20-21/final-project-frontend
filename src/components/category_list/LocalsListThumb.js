@@ -18,7 +18,7 @@ export const LocalsListThumb = ({ _id, tagline, img_url }) => {
     <MainContainer>
       <CardContainer>
         <LocalLink to={`/local/${_id}`}>
-          <ThumbImage url={img_url} />
+          <ThumbImage url={img_url} imgSize={"98%"}/>
         </LocalLink>
         <Container>
           <ThumbText>{tagline}</ThumbText>

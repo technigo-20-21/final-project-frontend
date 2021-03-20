@@ -7,10 +7,10 @@ import {
   ThumbTextBox,
 } from "../../library/category_list_ui/ThumbStyles";
 
-export const CategoryThumb = ({ name, display_name, img_url }) => {
+export const CategoryThumb = ({ name, display_name, img_url, cover }) => {
   return (
     <CategoryLink to={`/locals/${name}`}>
-      <ThumbImage url={img_url}>
+      <ThumbImage url={img_url} imgSize={cover}>
         <ThumbTextBox>
           <ThumbText>{display_name}</ThumbText>
           <ThumbIcon className="fas fa-chevron-circle-left"></ThumbIcon>

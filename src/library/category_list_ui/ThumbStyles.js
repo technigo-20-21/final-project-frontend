@@ -51,12 +51,12 @@ export const ThumbTextBox = styled.div`
 export const ThumbImage = styled.div`
   height: 300px;
   background-image: url("${(props) => props.url}");
-  background-size: cover;
+  background-size: ${(props) => props.imgSize};
   background-position: center;
   background-repeat: no-repeat;
   background-color: #fff;
   color: #fff;
-  border: solid 1px #5D5649;
+  border: solid 1px #c7b89c;
   font-size: 28px;
   display: flex;
   flex-direction: column;
