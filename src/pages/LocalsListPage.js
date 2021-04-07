@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 import { useParams } from "react-router-dom";
 import uniqid from "uniqid";
-import { useQuery } from "react-query"
 
 import { FetchLocalsList } from "../reducers/localsFetch";
 import { LocalsListThumb } from "../components/category_list/LocalsListThumb";

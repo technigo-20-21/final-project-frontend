@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { FetchLocal } from "../reducers/localsFetch";
 import { LocalCard } from "../components/single_local/LocalCard";
@@ -30,7 +29,7 @@ export const LocalPage = () => {
         <>
           <SectionHeader></SectionHeader>
           <SectionTagline>Din lokala företagare i Torslanda</SectionTagline>
-          {/* <Map /> */}
+          <Map {...data}/>
           <LocalCard {...data} />
         </>
       ) : null}

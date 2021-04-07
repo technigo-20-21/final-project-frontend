@@ -1,11 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { MAPBOX_URL } from "../../urls";
 import { StyledPop } from "../../library/single_local_ui/MapStyles";
 
-export const Map = () => {
-  const local = useSelector((state) => state.locals.singleLocal.local);
+export const Map = (local) => {
 
   let coordinates;
   let zoom;

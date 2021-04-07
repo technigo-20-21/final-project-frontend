@@ -7,7 +7,6 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import { users } from "./reducers/users";
-import { locals } from "./reducers/locals";
 import { Header } from "./components/Header";
 import { LandingPage } from "./pages/LandingPage";
 import { LocalsListPage } from "./pages/LocalsListPage";
@@ -20,7 +19,6 @@ import { LottieLoader } from "library/global_ui/LottieLoader";
 
 const reducer = combineReducers({
   users: users.reducer,
-  locals: locals.reducer,
 });
 
 const store = configureStore({

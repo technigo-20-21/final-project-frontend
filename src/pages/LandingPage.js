@@ -7,9 +7,8 @@ import { FetchCategoriesList } from "reducers/localsFetch";
 import { useQueryClient } from "react-query";
 
 export const LandingPage = () => {
-  const { name } = useParams();
 
-  // const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
  
   const { data, isLoading, status, error } = FetchCategoriesList();
 
