@@ -1,44 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-
-import { CATEGORIES_URL } from "../urls";
 import { LottieLoader as Loader } from "../library/global_ui/LottieLoader";
 import { CategoryThumb } from "../components/category_list/CategoryThumb";
 import { Container, CategoriesContainer } from "../library/LandingPageStyles";
+import { FetchCategoriesList } from "reducers/localsFetch";
+import { useQueryClient } from "react-query";
 
 export const LandingPage = () => {
   const { name } = useParams();
-  const [categories, setCategories] = useState(null);
-  const [loading, setLoading] = useState(null);
 
-  const fetchCategoriesContent = () => {
-    fetch(CATEGORIES_URL)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("No categories to display");
-        }
-        return res.json();
-      })
-      .then((categoriesList) => {
-        setCategories(categoriesList);
-        setLoading(false);
-      })
-      .catch((err) => console.log(err));
-  };
+  // const queryClient = useQueryClient();
+ 
+  const { data, isLoading, status, error } = FetchCategoriesList();
 
-  useEffect(() => {
-    setLoading(true);
-    fetchCategoriesContent();
-  }, [name]);
+  console.log(data)
+  if (error) {
+    return <div>{error.message}</div> 
+  }
 
   return (
     <Container>
       <CategoriesContainer>
-        {loading && <Loader />}
-        {categories &&
-          categories.map((category) => (
-            <CategoryThumb key={category._id} {...category} />
-          ))}
+        {isLoading ? <Loader/> : null}
+        { status === "success" ?
+          (data.map((category) => (
+            <CategoryThumb key={category._id} {...category} /> ))
+          ) : null}
       </CategoriesContainer>
     </Container>
   );

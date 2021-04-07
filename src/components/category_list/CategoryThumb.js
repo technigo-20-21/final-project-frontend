@@ -10,7 +10,7 @@ import {
 export const CategoryThumb = ({ name, display_name, img_url }) => {
   return (
     <CategoryLink to={`/locals/${name}`}>
-      <ThumbImage url={img_url} imgSize={cover}>
+      <ThumbImage url={img_url} imgSize={"cover"}>
         <ThumbTextBox>
           <ThumbText>{display_name}</ThumbText>
           <ThumbIcon className="fas fa-chevron-circle-left"></ThumbIcon>
